@@ -14,5 +14,37 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home',[
+        "title" => "Home"
+    ]);
+});
+
+Route::get('/guru', function () {
+    return view('guru', [
+        "title" => "Guru"
+    ]);
+});
+
+Route::get('/siswa', function () {
+    return view('siswa',[
+        "title" => "Siswa"
+    ]);
+});
+
+Route::get('/matkul', function () {
+    return view('matkul',[
+        "title" => "Mata Kuliah"
+    ]);
+});
+
+Route::get('/grup', function () {
+    return view('grup', [
+        "title" => "Grup Soal"
+    ]);
+});
+
+Route::get('/soal', function () {
+    return view('soal',[
+        "title" => "Soal"
+    ]);
 });
