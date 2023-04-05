@@ -13,19 +13,19 @@
               </div>
               <div class="row">
                 <div class="col-md-3">
-                  <a class="text-decoration-none" href="/soal">
+                  <a class="text-decoration-none" href="/siswa">
                   <div class="card shadow mb-4">
                     <div class="card-body text-center">
                       <div class="card-text my-2">
-                        <h2>Matematika</h2>
+                        <h4>Multimedia</h4>
                         <br>
-                        <h4>Ujian Tengah Semester</h4>
+                        <h2>X</h2>
                       </div>
                     </div> <!-- ./card-text -->
                     <div class="card-footer">
                       <div class="row align-items-center justify-content-between">
                         <div class="col-auto">
-                          <h6>Mata Pelajaran</h6>
+                          <h6>Kelas</h6>
                         </div>
                         <div class="col-auto">
                           <div class="file-action">
@@ -39,19 +39,19 @@
                   </a>
                 </div> <!-- .col -->
                 <div class="col-md-3">
-                  <a class="text-decoration-none" href="/soal">
+                  <a class="text-decoration-none" href="/siswa">
                   <div class="card shadow mb-4">
                     <div class="card-body text-center">
                       <div class="card-text my-2">
-                        <h2>Matematika</h2>
+                        <h4>Perikanan</h4>
                         <br>
-                        <h4>Ujian Akhir Semester</h4>
+                        <h2>XI</h2>
                       </div>
                     </div> <!-- ./card-text -->
                     <div class="card-footer">
                       <div class="row align-items-center justify-content-between">
                         <div class="col-auto">
-                          <h6>Mata Pelajaran</h6>
+                          <h6>Kelas</h6>
                         </div>
                         <div class="col-auto">
                           <div class="file-action">

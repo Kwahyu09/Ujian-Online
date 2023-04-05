@@ -11,7 +11,7 @@
           </div>
           <ul class="navbar-nav flex-fill w-100 mt-0 mb-3">
               <li class="nav-item w-100">
-                <a class="nav-link text-center" href="/">
+                <a class="nav-link text-center {{ ($title === "Home") ? 'active' : '' }}" href="/">
                     <span>Sistem Ujian</span> <br>
                     <span>SMA N 4 Kota Bengkulu</span> <br>
               </a>
@@ -19,7 +19,7 @@
           </ul>
           <ul class="navbar-nav flex-fill w-100 mb-2">
               <li class="nav-item w-100">
-                  <a class="nav-link" href="/">
+                  <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}" href="/">
                 <i class="fe fe-home fe-16"></i>
                 <span class="ml-3 item-text">Beranda</span>
               </a>
@@ -30,7 +30,7 @@
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-              <a class="nav-link" href="/guru">
+              <a class="nav-link {{ ($title === "Guru") ? 'active' : '' }}" href="/guru">
                 <i class="fe fe-clipboard fe-16"></i>
                 <span class="ml-3 item-text">Guru</span>
               </a>
@@ -38,17 +38,25 @@
           </ul>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-              <a class="nav-link" href="/siswa">
-                <i class="fe fe-clipboard fe-16"></i>
-                <span class="ml-3 item-text">Siswa</span>
+              <a class="nav-link {{ ($title === "Mata Pelajaran") ? 'active' : '' }}" href="/matkul">
+                <i class="fe fe-book-open fe-16"></i>
+                <span class="ml-3 item-text">Mata Pelajaran</span>
               </a>
             </li>
           </ul>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-              <a class="nav-link" href="/matkul">
+              <a class="nav-link {{ ($title === "Kelas") ? 'active' : '' }}" href="/kelas">
                 <i class="fe fe-book-open fe-16"></i>
-                <span class="ml-3 item-text">Mata Pelajaran</span>
+                <span class="ml-3 item-text">Kelas</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item w-100">
+              <a class="nav-link {{ ($title === "Kelas Siswa") ? 'active' : '' }}" href="/kelassiswa">
+                <i class="fe fe-clipboard fe-16"></i>
+                <span class="ml-3 item-text">Siswa</span>
               </a>
             </li>
           </ul>
@@ -57,7 +65,7 @@
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-              <a class="nav-link" href="/grup">
+              <a class="nav-link {{ ($title === "Grup Soal") ? 'active' : '' }}" href="/grup">
                 <i class="fe fe-folder fe-16"></i>
                 <span class="ml-3 item-text">Grup Soal</span>
               </a>
@@ -65,9 +73,17 @@
           </ul>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-              <a class="nav-link" href="/soal">
+              <a class="nav-link {{ ($title === "Ujian") ? 'active' : '' }}" href="/ujian">
                 <i class="fe fe-file-text fe-16"></i>
-                <span class="ml-3 item-text">Soal</span>
+                <span class="ml-3 item-text">Ujian</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item w-100">
+              <a class="nav-link {{ ($title === "Hasil Ujian") ? 'active' : '' }}" href="/hasilujian">
+                <i class="fe fe-file-text fe-16"></i>
+                <span class="ml-3 item-text">Hasil Ujian</span>
               </a>
             </li>
           </ul>

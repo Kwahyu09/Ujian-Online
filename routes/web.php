@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\SoalController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MapelController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UjianController;
+use App\Http\Controllers\GrupsoalController;
+use App\Http\Controllers\HasilujianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,32 +27,12 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/guru', function () {
-    return view('guru', [
-        "title" => "Guru"
-    ]);
-});
-
-Route::get('/siswa', function () {
-    return view('siswa',[
-        "title" => "Siswa"
-    ]);
-});
-
-Route::get('/matkul', function () {
-    return view('matkul',[
-        "title" => "Mata Kuliah"
-    ]);
-});
-
-Route::get('/grup', function () {
-    return view('grup', [
-        "title" => "Grup Soal"
-    ]);
-});
-
-Route::get('/soal', function () {
-    return view('soal',[
-        "title" => "Soal"
-    ]);
-});
+Route::get('/guru', [GuruController::class,'index']);
+Route::get('/kelas', [KelasController::class,'index']);
+Route::get('/siswa', [SiswaController::class,'index']);
+Route::get('/kelassiswa', [KelasController::class, 'kelas_siswa']);
+Route::get('/matkul',[MapelController::class,'index']);
+Route::get('/grup',[GrupsoalController::class,'index']);
+Route::get('/soal', [SoalController::class, 'index']);
+Route::get('/ujian', [UjianController::class,'index']);
+Route::get('/hasilujian', [HasilujianController::class,'index']);
