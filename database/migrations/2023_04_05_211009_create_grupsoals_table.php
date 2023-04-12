@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('grupsoals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('mapel_id');
             $table->string('nama_grup');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

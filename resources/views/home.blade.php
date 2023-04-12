@@ -16,22 +16,7 @@
                       <div class="row align-items-center">
                         <div class="col">
                           <small class="text-muted mb-1">Jumlah Guru</small>
-                          <h3 class="card-title mb-0">111</h3>
-                        </div>
-                        <div class="col-4 text-right">
-                          <i class="fe fe-user"></i>
-                        </div>
-                      </div> <!-- /. row -->
-                    </div> <!-- /. card-body -->
-                  </div> <!-- /. card -->
-                </div> <!-- /. col -->
-                <div class="col-md-4">
-                  <div class="card shadow mb-4">
-                    <div class="card-body">
-                      <div class="row align-items-center">
-                        <div class="col">
-                          <small class="text-muted mb-1">Jumlah Siswa</small>
-                          <h3 class="card-title mb-0">2.342</h3>
+                          <h3 class="card-title mb-0">{{ $guru }}</h3>
                         </div>
                         <div class="col-4 text-right">
                           <i class="fe fe-user"></i>
@@ -46,10 +31,10 @@
                       <div class="row align-items-center">
                         <div class="col">
                           <small class="text-muted mb-1">Jumlah Mata Pelajaran</small>
-                          <h3 class="card-title mb-0">30</h3>
+                          <h3 class="card-title mb-0">{{ $mapel }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                          <i class="fe fe-user"></i>
+                          <i class="fe fe-book-open"></i>
                         </div>
                       </div> <!-- /. row -->
                     </div> <!-- /. card-body -->
@@ -60,11 +45,41 @@
                     <div class="card-body">
                       <div class="row align-items-center">
                         <div class="col">
-                          <small class="text-muted mb-1">Jumlah Grup Soal</small>
-                          <h3 class="card-title mb-0">15</h3>
+                          <small class="text-muted mb-1">Jumlah Kelas</small>
+                          <h3 class="card-title mb-0">{{ $kelas }}</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                          <i class="fe fe-file-text"></i>
+                        </div>
+                      </div> <!-- /. row -->
+                    </div> <!-- /. card-body -->
+                  </div> <!-- /. card -->
+                </div> <!-- /. col -->
+                <div class="col-md-4">
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <small class="text-muted mb-1">Jumlah Siswa</small>
+                          <h3 class="card-title mb-0">{{ $siswa }}</h3>
                         </div>
                         <div class="col-4 text-right">
                           <i class="fe fe-user"></i>
+                        </div>
+                      </div> <!-- /. row -->
+                    </div> <!-- /. card-body -->
+                  </div> <!-- /. card -->
+                </div> <!-- /. col -->
+                 <div class="col-md-4">
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <small class="text-muted mb-1">Jumlah Grup Soal</small>
+                          <h3 class="card-title mb-0">{{ $grupsoal }}</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                          <i class="fe fe-folder"></i>
                         </div>
                       </div> <!-- /. row -->
                     </div> <!-- /. card-body -->
@@ -76,10 +91,40 @@
                       <div class="row align-items-center">
                         <div class="col">
                           <small class="text-muted mb-1">Jumlah Soal</small>
-                          <h3 class="card-title mb-0">111</h3>
+                          <h3 class="card-title mb-0">{{ $soal }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                          <i class="fe fe-user"></i>
+                          <i class="fe fe-file-text"></i>
+                        </div>
+                      </div> <!-- /. row -->
+                    </div> <!-- /. card-body -->
+                  </div> <!-- /. card -->
+                </div> <!-- /. col -->
+                <div class="col-md-4">
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <small class="text-muted mb-1">Jumlah Ujian</small>
+                          <h3 class="card-title mb-0">{{ $ujian }}</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                          <i class="fe fe-file-text"></i>
+                        </div>
+                      </div> <!-- /. row -->
+                    </div> <!-- /. card-body -->
+                  </div> <!-- /. card -->
+                </div> <!-- /. col -->
+                <div class="col-md-4">
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <small class="text-muted mb-1">Jumlah Hasil Ujian</small>
+                          <h3 class="card-title mb-0">{{ $hasilujian }}</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                          <i class="fe fe-file-text"></i>
                         </div>
                       </div> <!-- /. row -->
                     </div> <!-- /. card-body -->

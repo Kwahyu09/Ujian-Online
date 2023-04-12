@@ -15,9 +15,7 @@ class SoalController extends Controller
      */
     public function index()
     {
-        return view('soal',[
-            "title" => "Soal"
-        ]);
+       //
     }
 
     /**

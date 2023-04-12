@@ -49,7 +49,11 @@ class GrupsoalController extends Controller
      */
     public function show(Grupsoal $grupsoal)
     {
-        //
+         return view('soal',[
+            "title" => "Soal",
+            'grup' => $grupsoal->slug,
+            'post' => $grupsoal->soal
+        ]);
     }
 
     /**

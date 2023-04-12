@@ -4,20 +4,21 @@
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-12">
-              <h2 class="h3 mb-0 page-title">Data {{ $title }}</h2> <br>
-                  <div class="card shadow">
-                    <div class="card-body">
+              <div class="card shadow">
+                <div class="card-body">
+                      <h2 class="h3 mb-0 page-title">Data {{ $title }} Kelas {{ $kelas }}</h2> <br>
                       <div class="row align-items-center my-4">
                         <div class="col">
                         <button type="button" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</button>
                         </div>
                         <div class="col-auto">
-                            <form class="form-inline mr-auto searchform text-muted">
-                                <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Cari..." aria-label="Search">
-                            </form>
+                          <form class="form-inline mr-auto searchform">
+                            <input class="form-control mr-sm-2 pl-4" type="text" placeholder="Cari..." name="search" value="{{ request('search') }}">
+                          </form>
                         </div>
                     </div>
                       <!-- table -->
+                      @if ($post->count())
                       <table class="table table-hover table-borderless border-v">
                         <thead class="thead-dark">
                           <tr>
@@ -34,42 +35,30 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="accordion-toggle collapsed" id="c-2474" data-toggle="collapse" data-parent="#c-2474" href="#collap-2474">
-                            <td>1</td>
-                            <td>78375189300728</td>
-                            <td>Muhammad Riski</td>
-                            <td>Jln Salak 1 Panorama</td>
-                            <td>Jembatan Kecil, Singaran Pati</td>
-                            <td>09-11-2001</td>
-                            <td>L</td>
-                            <td>mriski@gmail.com</td>
-                            <td>password</td>
-                            <td>
-                              <a href="/{{ $title }}" class="badge bg-warning badge-light"><i class="fe fe-24 fe-edit"></i>
-                              </a>
+                          @foreach ($post as $pos)
+                            <tr class="accordion-toggle collapsed" id="c-2474" data-toggle="collapse" data-parent="#c-2474" href="#collap-2474">
+                              <td>{{ $loop->iteration }}</td>
+                              <td>{{ $pos->nik }}</td>
+                              <td>{{ $pos->nama }}</td>
+                              <td>{{ $pos->alamat }}</td>
+                              <td>{{ $pos->tempat_lahir }}</td>
+                              <td>{{ $pos->tanggal_lahir }}</td>
+                              <td>{{ $pos->jenis_kel }}</td>
+                              <td>{{ $pos->email }}</td>
+                              <td>{{ $pos->password }}</td>
+                              <td style="width:90px">
+                                <a href="/" class="badge bg-warning badge-light"><i class="fe fe-16 fe-edit"></i>
+                                </a>
                                 |
-                              <a href="/{{ $title }}" class="badge bg-danger badge-light"><i class="fe fe-24 fe-trash-2"></i></a>
+                                <a href="/" class="badge bg-danger badge-light"><i class="fe fe-16 fe-trash-2"></i></a>
                             </td>
                           </tr>
-                          <tr class="accordion-toggle collapsed" id="c-2474" data-toggle="collapse" data-parent="#c-2474" href="#collap-2474">
-                            <td>2</td>
-                            <td>95289300754538</td>
-                            <td>Mawar Puspita</td>
-                            <td>Selebar</td>
-                            <td>Simpang Lima Ratu Samban</td>
-                            <td>01-08-2002</td>
-                            <td>P</td>
-                            <td>mawar@gmail.com</td>
-                            <td>password</td>
-                            <td>
-                              <a href="/{{ $title }}" class="badge bg-warning badge-light"><i class="fe fe-24 fe-edit"></i>
-                              </a>
-                              | 
-                              <a href="/{{ $title }}" class="badge bg-danger badge-light"><i class="fe fe-24 fe-trash-2"></i></a>
-                            </td>
-                          </tr>
+                          @endforeach
                         </tbody>
                       </table>
+                      @else
+                        <p class="text-center fs-4">Tidak Ada Data {{ $title }} Kelas {{ $kelas }}</p>
+                      @endif
                     </div>
                   </div>
                 </div>

@@ -15,7 +15,16 @@ class UjianController extends Controller
     public function index()
     {
         return view('ujian', [
-        "title" => "Ujian"
+        "title" => "Ujian",
+        "post" => Ujian::latest()->filter(request(['search']))->paginate(30)
+        ]);
+    }
+
+    public function ujianhasil()
+    {
+        return view('ujianhasil', [
+        "title" => "Ujian Hasil",
+        "post" => Ujian::latest()->filter(request(['search']))->paginate(30)
         ]);
     }
 

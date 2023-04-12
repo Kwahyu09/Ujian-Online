@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ??  false, function($query, $search){
+            return $query->where('nip', 'like', '%' . $search . '%')
+                  ->orWhere('nama_guru', 'like', '%' . $search . '%')
+                  ->orWhere('pendidikan', 'like', '%' . $search . '%')
+                  ->orWhere('jurusan', 'like', '%' . $search . '%');
+        });
+    }
 }

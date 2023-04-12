@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Ujian;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UjianSeeder extends Seeder
 {
@@ -14,6 +15,17 @@ class UjianSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Ujian::create([
+            'nama_ujian' => 'Ujian Tengah Semester',
+            'slug' => 'ujian-tengah-semester',
+            'mapel' => 'Fisika',
+            'grup_Soal' => 'Ujian Tengah Semester',
+            'kelas' => 'X-2023-NKPI',
+            'acak_soal' => 'Y',
+            'acak_jawaban' => 'Y',
+            'tanggal' => '2023-11-04',
+            'waktu_mulai' => '2023-04-11 10:14:31',
+            'waktu_selesai' => '2023-04-11 14:14:31'
+        ]);
     }
 }

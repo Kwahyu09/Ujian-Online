@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
-            $table->integer('nip')->unique();
+            $table->bigInteger('nip')->unique();
             $table->string('nama_guru');
-            $table->string('slug');
+            $table->string('gelar')->nullable();
+            $table->string('slug')->unique();
             $table->string('pendidikan');
             $table->string('jurusan');
             $table->string('jenis_kelamin');

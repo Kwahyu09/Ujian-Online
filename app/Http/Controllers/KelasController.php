@@ -16,17 +16,20 @@ class KelasController extends Controller
     public function index()
     {
         return view('kelas',[
-        "title" => "Kelas"
+        "title" => "Kelas",
+        "slug" => "kelas",
+        "post" => Kelas::latest()->filter(request(['search']))->paginate(30)
         ]);
     }
 
     public function kelas_siswa()
     {
         return view('kelassiswa',[
-            "title" => "Kelas Siswa"
+            "title" => "Kelas Siswa",
+            "slug" => "kelassiswa",
+            "post" => Kelas::latest()->filter(request(['search']))->paginate(30)
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +59,11 @@ class KelasController extends Controller
      */
     public function show(Kelas $kelas)
     {
-        //
+        return view('siswa',[
+            'title' => 'siswa',
+            'kelas' => $kelas->slug,
+            'post' => $kelas->siswa
+        ]);
     }
 
     /**

@@ -15,8 +15,19 @@ class MapelController extends Controller
      */
     public function index()
     {
-        return view('matkul',[
-        "title" => "Mata Pelajaran"
+        return view('mapel',[
+        "title" => "Mata Pelajaran",
+        "post" => Mapel::latest()->filter(request(['search']))->paginate(10)
+        ]);
+    }
+
+     public function mapel_grup()
+    {
+        return view('mapelgrup',[
+        "title" => "Mata Pelajaran",
+        "slug" => "mapelgrup",
+        "judul" => "Grup Soal",
+        "post" => Mapel::latest()->filter(request(['search']))->paginate(10)
         ]);
     }
 
@@ -49,7 +60,11 @@ class MapelController extends Controller
      */
     public function show(mapel $mapel)
     {
-        //
+        return view('grup', [
+            "title" => "Grup Soal",
+            "nama_mapel" => $mapel->nama_mapel,
+            "post" => $mapel->grupsoal
+        ]);
     }
 
     /**

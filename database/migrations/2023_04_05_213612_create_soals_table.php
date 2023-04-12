@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('soals', function (Blueprint $table) {
             $table->id();
-            $table->string('pertanyaan');
-            $table->string('slug');
+            $table->string('kd_soal');
+            $table->text('pertanyaan');
+            $table->foreignId('grupsoal_id');
+            $table->string('slug')->unique();
             $table->string('gambar')->nullable();
             $table->string('opsi_a');
             $table->string('opsi_b');

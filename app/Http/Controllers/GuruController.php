@@ -15,7 +15,8 @@ class GuruController extends Controller
     public function index()
     {
         return view('guru', [
-        "title" => "Guru"
+        "title" => "Guru",
+        "post" => Guru::latest()->filter(request(['search']))->paginate(10)
         ]);
     }
 
