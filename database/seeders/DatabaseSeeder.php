@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            GuruSeeder::class
-        ]);
+        // $this->call([
+        //     GuruSeeder::class
+        // ]);
         $this->call([
             KelasSeeder::class
         ]);
@@ -39,7 +39,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             HasilujianSeeder::class
         ]);
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
+        \App\Models\Guru::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
