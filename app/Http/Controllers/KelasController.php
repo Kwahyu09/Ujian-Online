@@ -18,7 +18,7 @@ class KelasController extends Controller
         return view('kelas',[
         "title" => "Kelas",
         "slug" => "kelas",
-        "post" => Kelas::latest()->filter(request(['search']))->paginate(30)
+        "post" => Kelas::latest()->filter(request(['search']))->paginate(8)
         ]);
     }
 
@@ -27,7 +27,7 @@ class KelasController extends Controller
         return view('kelassiswa',[
             "title" => "Kelas Siswa",
             "slug" => "kelassiswa",
-            "post" => Kelas::latest()->filter(request(['search']))->paginate(30)
+            "post" => Kelas::latest()->filter(request(['search']))->paginate(8)
         ]);
     }
     /**

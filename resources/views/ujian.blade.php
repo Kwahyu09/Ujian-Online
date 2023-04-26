@@ -55,7 +55,7 @@
                                     data-toggle="collapse"
                                     data-parent="#c-2474"
                                     href="#collap-2474">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
                                     <td>{{ $pos->nama_ujian }}</td>
                                     <td>{{ $pos->tanggal }}</td>
                                     <td>{{ $pos->kelas }}</td>
@@ -81,6 +81,9 @@
                             {{ $title }}
                         </p>
                         @endif
+                        <div class="mt-3 d-flex justify-content-end">
+                            {{ $post->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

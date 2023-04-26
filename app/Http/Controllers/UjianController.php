@@ -16,7 +16,7 @@ class UjianController extends Controller
     {
         return view('ujian', [
         "title" => "Ujian",
-        "post" => Ujian::latest()->filter(request(['search']))->paginate(30)
+        "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
         ]);
     }
 
@@ -24,7 +24,7 @@ class UjianController extends Controller
     {
         return view('ujianhasil', [
         "title" => "Ujian Hasil",
-        "post" => Ujian::latest()->filter(request(['search']))->paginate(30)
+        "post" => Ujian::latest()
         ]);
     }
 

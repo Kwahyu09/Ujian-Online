@@ -58,7 +58,7 @@
                                                 data-toggle="collapse"
                                                 data-parent="#c-2474"
                                                 href="#collap-2474">
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
                                                 <td>{{ $pos->nip }}</td>
                                                 <td>{{ $pos->nama_guru }}
                                                     {{ $pos->gelar }}</td>
@@ -86,7 +86,7 @@
                         <p class="text-center fs-4">Tidak Ada Data
                             {{ $title }}</p>
                         @endif
-                        <div class="d-flex justify-content-end">
+                        <div class="mt-3 d-flex justify-content-end">
                             {{ $post->links() }}
                         </div>
                     </div>

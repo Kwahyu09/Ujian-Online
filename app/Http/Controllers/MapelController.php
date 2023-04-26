@@ -17,7 +17,7 @@ class MapelController extends Controller
     {
         return view('mapel',[
         "title" => "Mata Pelajaran",
-        "post" => Mapel::latest()->filter(request(['search']))->paginate(10)
+        "post" => Mapel::latest()->filter(request(['search']))->paginate(8)
         ]);
     }
 
@@ -27,7 +27,7 @@ class MapelController extends Controller
         "title" => "Mata Pelajaran",
         "slug" => "mapelgrup",
         "judul" => "Grup Soal",
-        "post" => Mapel::latest()->filter(request(['search']))->paginate(10)
+        "post" => Mapel::latest()->filter(request(['search']))->paginate(8)
         ]);
     }
 
