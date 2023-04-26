@@ -19,6 +19,8 @@ class Ujian extends Model
                   ->orWhere('mapel', 'like', '%' . $search . '%')
                   ->orWhere('kelas', 'like', '%' . $search . '%')
                   ->orWhere('tanggal', 'like', '%' . $search . '%')
+                  ->orWhere('waktu_mulai', 'like', '%' . $search . '%')
+                  ->orWhere('waktu_selesai', 'like', '%' . $search . '%')
                   ->orWhere('grup_Soal', 'like', '%' . $search . '%');
         });
     }

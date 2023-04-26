@@ -16,7 +16,10 @@ class Guru extends Model
         $query->when($filters['search'] ??  false, function($query, $search){
             return $query->where('nip', 'like', '%' . $search . '%')
                   ->orWhere('nama_guru', 'like', '%' . $search . '%')
+                  ->orWhere('gelar', 'like', '%' . $search . '%')
                   ->orWhere('pendidikan', 'like', '%' . $search . '%')
+                  ->orWhere('jenis_kelamin', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%')
                   ->orWhere('jurusan', 'like', '%' . $search . '%');
         });
     }

@@ -16,12 +16,19 @@
                             </div>
                             <div class="col-auto">
                                 <form class="form-inline mr-auto searchform">
-                                    <input
-                                        class="form-control mr-sm-2 pl-4"
-                                        type="text"
-                                        placeholder="Cari..."
-                                        name="search"
-                                        value="{{ request('search') }}">
+                                    <div class="input-group mb-3">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Cari.."
+                                            name="search"
+                                            value="{{ request('search') }}">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fe fe-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
