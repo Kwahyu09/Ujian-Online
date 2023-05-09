@@ -25,6 +25,7 @@
               </a>
             </li>
           </ul>
+          @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Staf')
           <p class="text-muted nav-heading mt-4 mb-1">
             <span>Data</span>
           </p> 
@@ -68,6 +69,8 @@
               </a>
             </li>
           </ul>
+          @endif
+          @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Guru')
           <p class="text-muted nav-heading mt-4 mb-1">
             <span>Ujian</span>
           </p>
@@ -95,5 +98,6 @@
               </a>
             </li>
           </ul>
+          @endif
         </nav>
       </aside>

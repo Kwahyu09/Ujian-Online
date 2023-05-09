@@ -4,12 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\GuruSeeder;
 use Database\Seeders\SoalSeeder;
 use Database\Seeders\KelasSeeder;
 use Database\Seeders\MapelSeeder;
 use Database\Seeders\SiswaSeeder;
-use Database\Seeders\StaffSeeder;
 use Database\Seeders\UjianSeeder;
 use Database\Seeders\GrupsoalSeeder;
 use Database\Seeders\HasilujianSeeder;
@@ -23,9 +21,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            GuruSeeder::class
-        ]);
         $this->call([
             KelasSeeder::class
         ]);
@@ -46,9 +41,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             HasilujianSeeder::class
-        ]);
-        $this->call([
-            StaffSeeder::class
         ]);
         $this->call([
             UserSeeder::class

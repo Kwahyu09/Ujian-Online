@@ -6,10 +6,11 @@
             <div class="col-12">
               <div class="row align-items-center mb-2">
                 <div class="col">
-                  <h2 class="h5 page-title">Selamat Datang Admin !</h2>
+                  <h2 class="h5 page-title">Selamat Datang {{ $aktor }} !</h2>
                 </div>
               </div>
               <div class="row my-4">
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Staf')
                 <div class="col-md-4">
                   <div class="card shadow mb-4">
                     <div class="card-body">
@@ -85,6 +86,8 @@
                     </div> <!-- /. card-body -->
                   </div> <!-- /. card -->
                 </div> <!-- /. col -->
+                @endif
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Guru')
                  <div class="col-md-4">
                   <div class="card shadow mb-4">
                     <div class="card-body">
@@ -145,6 +148,7 @@
                     </div> <!-- /. card-body -->
                   </div> <!-- /. card -->
                 </div> <!-- /. col -->
+                @endif
               </div> <!-- end section -->
             </div> <!-- .col-12 -->
           </div> <!-- .row -->

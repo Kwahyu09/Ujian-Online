@@ -12,11 +12,13 @@ use App\Models\Grupsoal;
 use App\Models\Soal;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $nama = Auth::user()->nama;
         $staff = User::where('role', 'Staf')->count();
         $guru = User::where('role', 'Guru')->count();
         $mapel = Mapel::count();
@@ -28,6 +30,7 @@ class HomeController extends Controller
         $hasilujian = Hasilujian::count();
         return view('home', [
             "title" => "Home",
+            "aktor" => $nama,
             "staff" => $staff,
             "guru" => $guru,
             "mapel" => $mapel,

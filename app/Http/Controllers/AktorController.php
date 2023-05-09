@@ -63,7 +63,7 @@ class AktorController extends Controller
             'nama' => 'required|max:255|unique:App\Models\User',
             'username' => 'required|min:4|max:255|unique:App\Models\User',
             'role' => 'required|min:4|max:9',
-            'email' => 'required|email|max:255|min:4|unique:App\Models\User',
+            'email' => 'required|email:dns|max:255|min:4|unique:App\Models\User',
             'password' => 'required|min:5|max:255'
         ]);
         
@@ -79,7 +79,7 @@ class AktorController extends Controller
             'nama' => 'required|max:255|unique:App\Models\User',
             'username' => 'required|min:4|max:255|unique:App\Models\User',
             'role' => 'required|min:4|max:9',
-            'email' => 'required|email|max:255|min:4|unique:App\Models\User',
+            'email' => 'required|email:dns|max:255|min:4|unique:App\Models\User',
             'password' => 'required|min:5|max:255'
         ]);
         
