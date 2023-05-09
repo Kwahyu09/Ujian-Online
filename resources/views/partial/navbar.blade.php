@@ -30,6 +30,14 @@
           </p> 
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
+              <a class="nav-link {{ ($title === "Staff") ? 'active' : '' }}" href="/staf">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Staf</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item w-100">
               <a class="nav-link {{ ($title === "Guru") ? 'active' : '' }}" href="/guru">
                 <i class="fe fe-user fe-16"></i>
                 <span class="ml-3 item-text">Guru</span>

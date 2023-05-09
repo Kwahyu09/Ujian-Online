@@ -10,10 +10,8 @@
                         <br>
                         <div class="row align-items-center my-4">
                             <div class="col">
-                                <a href="/staf/create"></a>
-                                <button type="button" class="btn btn-primary">
-                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</button>
-                                    </a>
+                                <a href="/{{ $title }}/create" type="button" class="btn btn-primary">
+                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
                             </div>
                             <div class="col-auto">
                                 <form class="form-inline mr-auto searchform">
@@ -33,6 +31,14 @@
                                 </form>
                             </div>
                         </div>
+                        @if(session()->has('success'))
+                        <div class="alert alert-success alert-block">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert">
+                                <a href="/{{ $title }}" style="text-decoration: none;">×</a>
+                            </button>
+                        </div>
+                        @endif
                         @if ($post->count())
                         <!-- table -->
                         <div class="card">
@@ -44,9 +50,7 @@
                                                 <th>No</th>
                                                 <th>NIP</th>
                                                 <th>Nama</th>
-                                                <th>Pendidikan</th>
-                                                <th>Jurusan</th>
-                                                <th>Jenis Kelamin(P/L)</th>
+                                                <th>Username</th>
                                                 <th>Email</th>
                                                 <th>Password</th>
                                                 <th>Aksi</th>
@@ -55,18 +59,15 @@
                                         <tbody>
                                             @foreach ($post as $pos)
                                             <tr
-                                                class="accordion-toggle collapsed"
+                                                class="accordion-toggle collapsed text-center"
                                                 id="c-2474"
                                                 data-toggle="collapse"
                                                 data-parent="#c-2474"
                                                 href="#collap-2474">
                                                 <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
-                                                <td>{{ $pos->nip }}</td>
-                                                <td>{{ $pos->nama_guru }}
-                                                    {{ $pos->gelar }}</td>
-                                                <td>{{ $pos->pendidikan }}</td>
-                                                <td>{{ $pos->jurusan }}</td>
-                                                <td>{{ $pos->jenis_kelamin }}</td>
+                                                <td>{{ $pos->nik }}</td>
+                                                <td>{{ $pos->nama }}
+                                                <td>{{ $pos->username }}
                                                 <td>{{ $pos->email }}</td>
                                                 <td>{{ $pos->password }}</td>
                                                 <td style="width:90px">

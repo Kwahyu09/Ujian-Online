@@ -45,6 +45,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="/">Profil</a>
+              <a class="dropdown-item" href="/">Logout <i class="fe fe-log-out fe-16"></i></a>
             </div>
           </li>
         </ul>

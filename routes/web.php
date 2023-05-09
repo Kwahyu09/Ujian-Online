@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AktorController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UjianController;
 use App\Http\Controllers\GrupsoalController;
 use App\Http\Controllers\HasilujianController;
@@ -22,7 +25,15 @@ use App\Http\Controllers\HasilujianController;
 
 Route::get('/', [HomeController::class,'index']);
 
-Route::get('/guru', [GuruController::class,'index']);
+Route::get('/login', [LoginController::class,'index']);
+
+Route::get('/staf', [AktorController::class,'index_staf']);
+Route::get('/staf/create', [AktorController::class,'create_staf']);
+Route::post('/staf/store', [AktorController::class,'store_staf']);
+
+Route::get('/guru', [AktorController::class,'index_guru']);
+Route::get('/guru/create', [AktorController::class,'create_guru']);
+Route::post('/guru/store', [AktorController::class,'store_guru']);
 
 Route::get('/matkul',[MapelController::class,'index']);
 

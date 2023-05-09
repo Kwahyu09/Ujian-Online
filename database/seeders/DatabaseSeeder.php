@@ -5,6 +5,14 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\GuruSeeder;
+use Database\Seeders\SoalSeeder;
+use Database\Seeders\KelasSeeder;
+use Database\Seeders\MapelSeeder;
+use Database\Seeders\SiswaSeeder;
+use Database\Seeders\StaffSeeder;
+use Database\Seeders\UjianSeeder;
+use Database\Seeders\GrupsoalSeeder;
+use Database\Seeders\HasilujianSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,6 +46,12 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             HasilujianSeeder::class
+        ]);
+        $this->call([
+            StaffSeeder::class
+        ]);
+        $this->call([
+            UserSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
         // \App\Models\Guru::factory(10)->create();

@@ -10,13 +10,15 @@ use App\Models\Ujian;
 use App\Models\Hasilujian;
 use App\Models\Grupsoal;
 use App\Models\Soal;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $guru = Guru::count();
+        $staff = User::where('role', 'Staf')->count();
+        $guru = User::where('role', 'Guru')->count();
         $mapel = Mapel::count();
         $kelas = Kelas::count();
         $siswa = Siswa::count();
@@ -26,6 +28,7 @@ class HomeController extends Controller
         $hasilujian = Hasilujian::count();
         return view('home', [
             "title" => "Home",
+            "staff" => $staff,
             "guru" => $guru,
             "mapel" => $mapel,
             "kelas" => $kelas,
