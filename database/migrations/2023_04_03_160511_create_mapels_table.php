@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('mapels', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('nama_mapel');
             $table->string('slug')->unique();
             $table->timestamps();

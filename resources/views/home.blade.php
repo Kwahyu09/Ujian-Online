@@ -87,7 +87,25 @@
                   </div> <!-- /. card -->
                 </div> <!-- /. col -->
                 @endif
+                @if (Auth::user()->role == 'Guru')
+                <div class="col-md-4">
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <small class="text-muted mb-1">Jumlah Mata Pelajaran</small>
+                          <h3 class="card-title mb-0">{{ $mapel }}</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                          <i class="fe fe-book-open"></i>
+                        </div>
+                      </div> <!-- /. row -->
+                    </div> <!-- /. card-body -->
+                  </div> <!-- /. card -->
+                </div> <!-- /. col -->
+                @endif
                 @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Guru')
+
                  <div class="col-md-4">
                   <div class="card shadow mb-4">
                     <div class="card-body">

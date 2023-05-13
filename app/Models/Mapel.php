@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Grupsoal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,5 +23,10 @@ class Mapel extends Model
     public function grupsoal()
     {
         return $this->hasMany(Grupsoal::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

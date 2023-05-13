@@ -23,11 +23,16 @@ class MapelController extends Controller
 
      public function mapel_grup()
     {
+        $post = Mapel::latest()->filter(request(['search']))->paginate(8);
+
+        if(auth()->user()->role == "Guru"){
+            $post = Mapel::where('user_id', auth()->user()->id)->latest()->filter(request(['search']))->paginate(8);
+        }
         return view('mapelgrup',[
         "title" => "Mata Pelajaran",
         "slug" => "mapelgrup",
         "judul" => "Grup Soal",
-        "post" => Mapel::latest()->filter(request(['search']))->paginate(8)
+        "post" => $post
         ]);
     }
 

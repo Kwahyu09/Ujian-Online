@@ -44,8 +44,8 @@
                             </button>
                         </div> 
                         @endif
-                    <div class="w-100 mb-0 d-flex">
-                        <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="/login">
+                    <div class="w-100 mt-0 mb-0 d-flex">
+                        <a class="navbar-brand mx-auto mt-0 flex-fill text-center" href="/login">
                             <img
                                 id="logo"
                                 width="100px"

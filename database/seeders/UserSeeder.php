@@ -26,10 +26,10 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'nik' => '197909192003121987',
-            'nama' => 'HILPI SUMARNI ,S.Pd.',
-            'username' => 'helpisumarni23',
+            'nama' => 'Krisna Wahyudi S.Kom',
+            'username' => 'kwahyu09',
             'role' => 'Guru',
-            'email' => 'helpisumarni@gmail.com',
+            'email' => 'krisnawahyudi2017@gmail.com',
             'password' => Hash::make('password')
         ]);
         User::create([
