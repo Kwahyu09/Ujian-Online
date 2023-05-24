@@ -18,7 +18,7 @@ class SiswaSeeder extends Seeder
         Siswa::create([
             'nik' => '19790919200312098',
             'nama' => 'Muhammad Riski',
-            'slug' => 'muhammad-riski',
+            'username' => 'muhammad-riski',
             'alamat' => 'Padang Jati',
             'tempat_lahir' => 'Padang Jati',
             'tanggal_lahir' => '2002-11-24',
@@ -30,7 +30,7 @@ class SiswaSeeder extends Seeder
         Siswa::create([
             'nik' => '19790919200312742',
             'nama' => 'Muhammad Ikhsan',
-            'slug' => 'muhammad-ikhsan',
+            'username' => 'muhammad-ikhsan',
             'alamat' => 'Panorama',
             'tempat_lahir' => 'Panorama',
             'tanggal_lahir' => '2002-01-12',
@@ -42,7 +42,7 @@ class SiswaSeeder extends Seeder
         Siswa::create([
             'nik' => '19790919200312231',
             'nama' => 'Mawar Saputri',
-            'slug' => 'mawar-saputri',
+            'username' => 'mawar-saputri',
             'alamat' => 'Padang Serai',
             'tempat_lahir' => 'Padang Serai',
             'tanggal_lahir' => '2003-02-12',

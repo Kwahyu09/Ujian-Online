@@ -8,10 +8,10 @@
                         <h2 class="h3 mb-0 page-title">Data
                             {{ $title }}</h2>
                         <br>
-                        <div class="row align-items-center mb-3">
+                        <div class="row align-items-center my-4">
                             <div class="col">
-                                <button type="button" class="btn btn-primary">
-                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</button>
+                                <a href="/ujian/create" class="btn btn-primary">
+                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
                             </div>
                             <div class="col-auto">
                                 <form class="form-inline mr-auto searchform">
@@ -31,15 +31,19 @@
                                 </form>
                             </div>
                         </div>
-                        @if ($post->count())
                         <!-- table -->
+                        @if ($post->count())
                         <table class="table table-hover table-borderless border-v text-center">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kelas</th>
-                                    <th>Tahun</th>
-                                    <th>Jurusan</th>
+                                    <th>Nama Ujian</th>
+                                    <th>Tanggal</th>
+                                    <th>Kelas</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Grup Soal</th>
+                                    <th>Waktu Mulai</th>
+                                    <th>Waktu Selesai</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -52,15 +56,19 @@
                                     data-parent="#c-2474"
                                     href="#collap-2474">
                                     <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
-                                    <td>{{ $pos->nama_kelas }}</td>
-                                    <td>{{ $pos->tahun }}</td>
-                                    <td>{{ $pos->jurusan }} ({{ $pos->singkat_jur }})</td>
+                                    <td>{{ $pos->nama_ujian }}</td>
+                                    <td>{{ $pos->tanggal }}</td>
+                                    <td>{{ $pos->kelas }}</td>
+                                    <td>{{ $pos->mapel }}</td>
+                                    <td>{{ $pos->grup_soal }}</td>
+                                    <td>{{ $pos->waktu_mulai }}</td>
+                                    <td>{{ $pos->waktu_selesai }}</td>
                                     <td style="width:90px">
-                                        <a href="/{{ $slug }}/{{ $pos->slug }}" class="badge bg-warning badge-light">
+                                        <a href="/{{ $title }}" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |
-                                        <a href="/{{ $slug }}" class="badge bg-danger badge-light">
+                                        <a href="/{{ $title }}" class="badge bg-danger badge-light">
                                             <i class="fe fe-16 fe-trash-2"></i>
                                         </a>
                                     </td>
@@ -70,7 +78,8 @@
                         </table>
                         @else
                         <p class="text-center fs-4">Tidak Ada Data
-                            {{ $title }}</p>
+                            {{ $title }}
+                        </p>
                         @endif
                         <div class="mt-3 d-flex justify-content-end">
                             {{ $post->links() }}

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kd_soal');
             $table->text('pertanyaan');
             $table->foreignId('grupsoal_id');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('gambar')->nullable();
             $table->string('opsi_a');
             $table->string('opsi_b');

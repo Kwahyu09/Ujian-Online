@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ujians', function (Blueprint $table) {
             $table->id();
             $table->string('nama_ujian');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('mapel');
             $table->string('grup_soal');
             $table->string('kelas');

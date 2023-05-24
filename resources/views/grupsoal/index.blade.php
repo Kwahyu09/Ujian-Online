@@ -8,7 +8,7 @@
                 <div class="col">
                   <h2 class="h3 mb-0 page-title">Data {{ $title }} {{ $nama_mapel }}</h2>
                   <br>
-                  <button type="button" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-1"></span>Tambah</button>
+                  <a href="/create/{{ $slug }}" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-1"></span>Tambah</a>
                 </div>
               </div>
               @if ($post->count())

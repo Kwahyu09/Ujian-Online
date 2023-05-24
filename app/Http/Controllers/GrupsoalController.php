@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grupsoal;
+use App\Models\Mapel;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreGrupsoalRequest;
 use App\Http\Requests\UpdateGrupsoalRequest;
+
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class GrupsoalController extends Controller
 {
@@ -25,9 +29,13 @@ class GrupsoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Mapel $mapel)
     {
-        //
+        return view('grupsoal.create',[
+            "title" => "Grupsoal",
+            "mapel_id" => $mapel->id,
+            "slug_mapel" => $mapel->slug
+        ]);
     }
 
     /**
@@ -36,9 +44,9 @@ class GrupsoalController extends Controller
      * @param  \App\Http\Requests\StoreGrupsoalRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreGrupsoalRequest $request)
+    public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -49,7 +57,7 @@ class GrupsoalController extends Controller
      */
     public function show(Grupsoal $grupsoal)
     {
-         return view('soal',[
+         return view('soal.index',[
             "title" => "Soal",
             'grup' => $grupsoal->slug,
             'post' => $grupsoal->soal
@@ -88,5 +96,11 @@ class GrupsoalController extends Controller
     public function destroy(Grupsoal $grupsoal)
     {
         //
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Grupsoal::class, 'slug', $request->nama_grup);
+        return response()->json(['slug' => $slug ]);
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama_mapel');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->timestamps();
         });
     }

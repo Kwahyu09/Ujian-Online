@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\Hasilujian;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Ujian extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $guarded = ['id'];
 
@@ -28,5 +30,19 @@ class Ujian extends Model
     public function hasilujian()
     {
         return $this->hasOne(Hasilujian::class);
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nama_ujian'
+            ]
+        ];
     }
 }

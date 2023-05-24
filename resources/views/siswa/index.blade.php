@@ -6,12 +6,14 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h2 class="h3 mb-0 page-title">Data
-                            {{ $title }}</h2>
+                            {{ $title }}
+                            Kelas
+                            {{ $kelas }}</h2>
                         <br>
                         <div class="row align-items-center my-4">
                             <div class="col">
-                                <button type="button" class="btn btn-primary">
-                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</button>
+                                <a href="/siswa/create/{{ $kelas }}" class="btn btn-primary">
+                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
                             </div>
                             <div class="col-auto">
                                 <form class="form-inline mr-auto searchform">
@@ -33,17 +35,17 @@
                         </div>
                         <!-- table -->
                         @if ($post->count())
-                        <table class="table table-hover table-borderless border-v text-center">
+                        <table class="table table-hover table-borderless border-v">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Ujian</th>
-                                    <th>Tanggal</th>
-                                    <th>Kelas</th>
-                                    <th>Mata Pelajaran</th>
-                                    <th>Grup Soal</th>
-                                    <th>Waktu Mulai</th>
-                                    <th>Waktu Selesai</th>
+                                    <th>NIK</th>
+                                    <th>Nama</th>
+                                    <th>Alamat</th>
+                                    <th>Tempat, Tanggal Lahir</th>
+                                    <th>Jenis Kelamin(L/P)</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -55,20 +57,20 @@
                                     data-toggle="collapse"
                                     data-parent="#c-2474"
                                     href="#collap-2474">
-                                    <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
-                                    <td>{{ $pos->nama_ujian }}</td>
-                                    <td>{{ $pos->tanggal }}</td>
-                                    <td>{{ $pos->kelas }}</td>
-                                    <td>{{ $pos->mapel }}</td>
-                                    <td>{{ $pos->grup_soal }}</td>
-                                    <td>{{ $pos->waktu_mulai }}</td>
-                                    <td>{{ $pos->waktu_selesai }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $pos->nik }}</td>
+                                    <td>{{ $pos->nama }}</td>
+                                    <td>{{ $pos->alamat }}</td>
+                                    <td>{{ $pos->tempat_lahir }}, {{ $pos->tanggal_lahir }}</td>
+                                    <td>{{ $pos->jenis_kel }}</td>
+                                    <td>{{ $pos->email }}</td>
+                                    <td>{{ $pos->password }}</td>
                                     <td style="width:90px">
-                                        <a href="/{{ $title }}" class="badge bg-warning badge-light">
+                                        <a href="/" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |
-                                        <a href="/{{ $title }}" class="badge bg-danger badge-light">
+                                        <a href="/" class="badge bg-danger badge-light">
                                             <i class="fe fe-16 fe-trash-2"></i>
                                         </a>
                                     </td>
@@ -79,16 +81,18 @@
                         @else
                         <p class="text-center fs-4">Tidak Ada Data
                             {{ $title }}
-                        </p>
+                            Kelas
+                            {{ $kelas }}</p>
                         @endif
-                        <div class="mt-3 d-flex justify-content-end">
-                            {{ $post->links() }}
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- .row -->
+        <!-- end section -->
     </div>
-    <!-- .container-fluid -->
-    @endsection
+    <!-- .col-12 -->
+</div>
+<!-- .row -->
+</div>
+<!-- .container-fluid -->
+@endsection

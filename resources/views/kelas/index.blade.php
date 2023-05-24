@@ -1,5 +1,4 @@
-@extends('layout.main') 
-@section('container')
+@extends('layout.main') @section('container')
 <main role="main" class="main-content">
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -9,10 +8,10 @@
                         <h2 class="h3 mb-0 page-title">Data
                             {{ $title }}</h2>
                         <br>
-                        <div class="row mb-3">
+                        <div class="row align-items-center mb-3">
                             <div class="col">
-                                <button type="button" class="btn btn-primary">
-                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</button>
+                                <a href="/kelas/create" class="btn btn-primary">
+                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
                             </div>
                             <div class="col-auto">
                                 <form class="form-inline mr-auto searchform">
@@ -38,7 +37,9 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Mata Pelajaran</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Tahun</th>
+                                    <th>Jurusan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -51,13 +52,15 @@
                                     data-parent="#c-2474"
                                     href="#collap-2474">
                                     <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
-                                    <td>{{ $pos->nama_mapel }}</td>
-                                    <td>
-                                        <a href="/{{ $pos->slug }}" class="badge bg-warning badge-light">
+                                    <td>{{ $pos->nama_kelas }}</td>
+                                    <td>{{ $pos->tahun }}</td>
+                                    <td>{{ $pos->jurusan }} ({{ $pos->singkat_jur }})</td>
+                                    <td style="width:90px">
+                                        <a href="/{{ $slug }}/{{ $pos->slug }}" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |
-                                        <a href="/{{ $pos->slug }}" class="badge bg-danger badge-light">
+                                        <a href="/{{ $slug }}" class="badge bg-danger badge-light">
                                             <i class="fe fe-16 fe-trash-2"></i>
                                         </a>
                                     </td>
@@ -79,4 +82,4 @@
         <!-- .row -->
     </div>
     <!-- .container-fluid -->
-@endsection
+    @endsection

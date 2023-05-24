@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -25,9 +26,12 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Kelas $kelas)
     {
-        //
+        return view('siswa.create',[
+            "title" => "Siswa",
+            "kelas_id" => $kelas->id
+        ]);
     }
 
     /**
@@ -38,7 +42,7 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

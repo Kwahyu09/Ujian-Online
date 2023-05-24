@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Kelas extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $guarded = ['id'];
 
@@ -27,5 +29,19 @@ class Kelas extends Model
     public function siswa()
     {
         return $this->hasMany(Siswa::class);
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nama_kelas'
+            ]
+        ];
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Http\Requests\StoreKelasRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateKelasRequest;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class KelasController extends Controller
 {
@@ -15,7 +16,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        return view('kelas',[
+        return view('kelas.index',[
         "title" => "Kelas",
         "slug" => "kelas",
         "post" => Kelas::latest()->filter(request(['search']))->paginate(8)
@@ -37,7 +38,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('kelas.create',[
+            "title" => "Kelas"
+        ]);
     }
 
     /**
@@ -46,9 +49,9 @@ class KelasController extends Controller
      * @param  \App\Http\Requests\StoreKelasRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreKelasRequest $request)
+    public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -59,7 +62,7 @@ class KelasController extends Controller
      */
     public function show(Kelas $kelas)
     {
-        return view('siswa',[
+        return view('siswa.index',[
             'title' => 'siswa',
             'kelas' => $kelas->slug,
             'post' => $kelas->siswa
@@ -99,4 +102,11 @@ class KelasController extends Controller
     {
         //
     }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Kelas::class, 'slug', $request->nama_kelas);
+        return response()->json(['slug' => $slug ]);
+    }
+
 }

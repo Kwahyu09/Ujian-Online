@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Soal;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreSoalRequest;
 use App\Http\Requests\UpdateSoalRequest;
+use App\Models\Grupsoal;
 
 class SoalController extends Controller
 {
@@ -23,9 +25,13 @@ class SoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Grupsoal $grupsoal)
     {
-        //
+        return view('soal.create',[
+            "title" => "Soal",
+            "kd_soal" => uniqid(),
+            "grupsoal_id" => $grupsoal->id
+        ]);
     }
 
     /**
@@ -34,9 +40,9 @@ class SoalController extends Controller
      * @param  \App\Http\Requests\StoreSoalRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSoalRequest $request)
+    public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

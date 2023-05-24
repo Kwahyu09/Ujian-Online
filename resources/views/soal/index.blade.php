@@ -11,8 +11,8 @@
                         <br>
                         <div class="row align-items-center my-4">
                             <div class="col">
-                                <button type="button" class="btn btn-primary">
-                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</button>
+                                <a href="/soal/create/{{ $grup }}" class="btn btn-primary">
+                                    <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
                             </div>
                             <div class="col-auto">
                                 <form class="form-inline mr-auto searchform">

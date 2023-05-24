@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Mapel;
-use App\Http\Requests\StoremapelRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdatemapelRequest;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class MapelController extends Controller
 {
@@ -15,7 +17,7 @@ class MapelController extends Controller
      */
     public function index()
     {
-        return view('mapel',[
+        return view('mapel.index',[
         "title" => "Mata Pelajaran",
         "post" => Mapel::latest()->filter(request(['search']))->paginate(8)
         ]);
@@ -43,7 +45,10 @@ class MapelController extends Controller
      */
     public function create()
     {
-        //
+        return view('mapel.create',[
+            "title" => "Mata Pelajaran",
+            "post" => User::all()->where('role','Guru')
+        ]);
     }
 
     /**
@@ -52,9 +57,9 @@ class MapelController extends Controller
      * @param  \App\Http\Requests\StoremapelRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoremapelRequest $request)
+    public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -65,8 +70,9 @@ class MapelController extends Controller
      */
     public function show(mapel $mapel)
     {
-        return view('grup', [
+        return view('grupsoal.index', [
             "title" => "Grup Soal",
+            "slug" => $mapel->slug,
             "nama_mapel" => $mapel->nama_mapel,
             "post" => $mapel->grupsoal
         ]);
@@ -104,5 +110,11 @@ class MapelController extends Controller
     public function destroy(mapel $mapel)
     {
         //
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Mapel::class, 'slug', $request->nama_mapel);
+        return response()->json(['slug' => $slug ]);
     }
 }

@@ -18,32 +18,38 @@ class GrupsoalSeeder extends Seeder
          Grupsoal::create([
             'nama_grup' => 'Ulangan Harian Fisika',
             'slug' => 'ulangan-harian-fisika',
-            'mapel_id' => '2'
+            'mapel_id' => '2',
+            'user_id' => '1'
         ]);
          Grupsoal::create([
             'nama_grup' => 'Ujian Tengah Semester Fisika',
             'slug' => 'ujian-tengah-semester-fisika',
-            'mapel_id' =>'2'
+            'mapel_id' =>'2',
+            'user_id' => '1'
         ]);
          Grupsoal::create([
             'nama_grup' => 'Ujian Akhir Semester Fisika',
             'slug' => 'ujian-akhir-semester-fisika',
-            'mapel_id' =>'2'
+            'mapel_id' =>'2',
+            'user_id' => '1'
         ]);
          Grupsoal::create([
             'nama_grup' => 'Ulangan Harian Bahasa Indonesia',
             'slug' => 'ulangan-harian-bahasa-indonesia',
-            'mapel_id' =>'1'
+            'mapel_id' =>'1',
+            'user_id' => '1'
         ]);
          Grupsoal::create([
             'nama_grup' => 'Ujian Tengah Semester Bahasa Indonesia',
             'slug' => 'ujian-tengah-semester-bahasa-indonesia',
-            'mapel_id' =>'1'
+            'mapel_id' =>'1',
+            'user_id' => '1'
         ]);
          Grupsoal::create([
             'nama_grup' => 'Ujian Akhir Semester Bahasa Indonesia',
             'slug' => 'ujian-akhir-semester-bahasa-indonesia',
-            'mapel_id' =>'1'
+            'mapel_id' =>'1',
+            'user_id' => '2'
         ]);
     }
 }

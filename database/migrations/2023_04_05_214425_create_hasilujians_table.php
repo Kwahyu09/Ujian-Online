@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('hasilujians', function (Blueprint $table) {
             $table->id();
             $table->string('nik_siswa');
+            $table->string('slug');
             $table->foreignId('ujian_id');
             $table->string('nama_siswa');
             $table->string('skor');

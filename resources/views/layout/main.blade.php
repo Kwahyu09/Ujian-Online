@@ -24,6 +24,15 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/css/app-light.css" id="lightTheme">
     <link rel="stylesheet" href="/css/app-dark.css" id="darkTheme" disabled>
+    {{-- Trik EDITOR --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <style>
+      trix-toolbar [data-trix-button-group="file-tools"] {
+        display: none;
+      }
+    </style>
+
   </head>
   <body class="vertical  light  ">
     <div class="wrapper">
@@ -56,6 +65,11 @@
       @include('partial.navbar')
       @yield('container')
     </div> <!-- .wrapper -->
+    <script>
+      document.addEventListener('trix-file-accept', function(e){
+        e.preventDefault();
+      });
+    </script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/moment.min.js"></script>
