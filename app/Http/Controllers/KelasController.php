@@ -51,7 +51,16 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validatedData = $request->validate([
+            'nama_kelas' => 'required|max:50',
+            'slug' => 'required|min:2|max:255|unique:App\Models\Kelas',
+            'jurusan' => 'required|max:255',
+            'tahun' => 'required|min:4|max:4',
+            'singkat_jur' => 'required|max:255'
+        ]);
+
+        Kelas::create($validatedData);
+        return redirect('/kelas')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -65,7 +74,7 @@ class KelasController extends Controller
         return view('siswa.index',[
             'title' => 'siswa',
             'kelas' => $kelas->slug,
-            'post' => $kelas->siswa
+            'post' => $kelas->user
         ]);
     }
 

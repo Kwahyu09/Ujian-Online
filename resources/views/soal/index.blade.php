@@ -32,6 +32,14 @@
                                 </form>
                             </div>
                         </div>
+                        @if(session()->has('success'))
+                        <div class="alert alert-success alert-block">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert">
+                                <a href="/kelas" style="text-decoration: none;">×</a>
+                            </button>
+                        </div>
+                        @endif
                         @if ($post->count())
                         <!-- table -->
                         <table class="table table-hover table-borderless border-v text-center">
@@ -60,13 +68,13 @@
                                     href="#collap-2474">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pos->kd_soal }}</td>
-                                    <td>{{ $pos->pertanyaan }}</td>
+                                    <td>{!! $pos->pertanyaan !!}</td>
                                     <td>{{ $pos->gambar }}</td>
-                                    <td>{{ $pos->opsi_a }}</td>
-                                    <td>{{ $pos->opsi_b }}</td>
-                                    <td>{{ $pos->opsi_c }}</td>
-                                    <td>{{ $pos->opsi_d }}</td>
-                                    <td>{{ $pos->jawaban }}</td>
+                                    <td>{!! $pos->opsi_a !!}</td>
+                                    <td>{!!$pos->opsi_b !!}</td>
+                                    <td>{!! $pos->opsi_c !!}</td>
+                                    <td>{!! $pos->opsi_d !!}</td>
+                                    <td>{!! $pos->jawaban !!}</td>
                                     <td>{{ $pos->bobot }}</td>
                                     <td style="width:90px">
                                         <a href="/{{ $title }}" class="badge bg-warning badge-light">

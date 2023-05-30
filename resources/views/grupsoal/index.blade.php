@@ -11,6 +11,14 @@
                   <a href="/create/{{ $slug }}" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-1"></span>Tambah</a>
                 </div>
               </div>
+              @if(session()->has('success'))
+                  <div class="alert alert-success alert-block">
+                    {{ session('success') }}
+                      <button type="button" class="close" data-dismiss="alert">
+                          <a href="/" style="text-decoration: none;">×</a>
+                      </button>
+                </div>
+              @endif
               @if ($post->count())
               <div class="row">
                 @foreach ($post as $pos)

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Mapel;
+use App\Models\Kelas;
 use App\Models\Grupsoal;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -57,5 +58,9 @@ class User extends Authenticatable
     public function grupsoal()
     {
         return $this->hasMany(Grupsoal::class);
+    }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
     }
 }

@@ -16,6 +16,7 @@ class UjianSeeder extends Seeder
     public function run()
     {
         Ujian::create([
+            'kd_ujian' => '928hsdo2d',
             'nama_ujian' => 'Ujian Tengah Semester',
             'slug' => 'ujian-tengah-semester',
             'mapel' => 'Fisika',

@@ -59,7 +59,14 @@ class MapelController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validatedData = $request->validate([
+            'nama_mapel' => 'required|min:2|max:50',
+            'slug' => 'required|min:2|max:255|unique:App\Models\Mapel',
+            'user_id' => 'required'
+        ]);
+
+        Mapel::create($validatedData);
+        return redirect('/mapel')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**

@@ -30,7 +30,8 @@ class SoalController extends Controller
         return view('soal.create',[
             "title" => "Soal",
             "kd_soal" => uniqid(),
-            "grupsoal_id" => $grupsoal->id
+            "grupsoal_id" => $grupsoal->id,
+            "grupsoal_slug" => $grupsoal->slug
         ]);
     }
 
@@ -42,7 +43,29 @@ class SoalController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validatedData = $request->validate([
+            'kd_soal' => 'required|min:5|max:50',
+            'pertanyaan' => 'required|min:2|max:255',
+            'grupsoal_id' => 'required',
+            'slug' => 'required|min:5|max:50|unique:App\Models\Soal',
+            'opsi_a' => 'required',
+            'opsi_b' => 'required',
+            'opsi_c' => 'required',
+            'opsi_d' => 'required',
+            'bobot' => 'required'
+        ]);
+        if($request['jawaban'] == "opsi_a"){
+            $validatedData['jawaban'] = $request['opsi_a'];
+        }elseif($request['jawaban'] == "opsi_b"){
+            $validatedData['jawaban'] = $request['opsi_b'];
+        }elseif($request['jawaban'] == "opsi_c"){
+            $validatedData['jawaban'] = $request['opsi_c'];
+        }else{
+            $validatedData['jawaban'] = $request['opsi_d'];
+        }
+
+        Soal::create($validatedData);
+        return redirect('/grupsoal'.'/'.$request['grupsoal_slug'])->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**

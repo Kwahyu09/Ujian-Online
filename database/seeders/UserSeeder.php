@@ -56,5 +56,23 @@ class UserSeeder extends Seeder
             'email' => 'febridilia@gmail.com',
             'password' => Hash::make('password')
         ]);
+        User::create([
+            'nik' => '6554769670216251',
+            'nama' => 'Renal Akbar',
+            'username' => 'renal123',
+            'role' => 'Siswa',
+            'email' => 'renal@gmail.com',
+            'kelas_id' => '1',
+            'password' => Hash::make('password')
+        ]);
+        User::create([
+            'nik' => '6554769670210733',
+            'nama' => 'Yusuf Nasrulah',
+            'username' => 'yusuf123',
+            'role' => 'Siswa',
+            'email' => 'yusuf@gmail.com',
+            'kelas_id' => '1',
+            'password' => Hash::make('password')
+        ]);
     }
 }

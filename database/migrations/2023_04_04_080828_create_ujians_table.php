@@ -15,16 +15,17 @@ return new class extends Migration
     {
         Schema::create('ujians', function (Blueprint $table) {
             $table->id();
+            $table->char('kd_ujian')->unique();
             $table->string('nama_ujian');
             $table->string('slug');
             $table->string('mapel');
             $table->string('grup_soal');
             $table->string('kelas');
-            $table->string('acak_soal');
-            $table->string('acak_jawaban');
+            $table->string('acak_soal')->nullable();
+            $table->string('acak_jawaban')->nullable();
             $table->date('tanggal');
-            $table->timestamp('waktu_mulai')->nullable();
-            $table->timestamp('waktu_selesai')->nullable();
+            $table->time('waktu_mulai');
+            $table->time('waktu_selesai');
             $table->timestamps();
         });
     }

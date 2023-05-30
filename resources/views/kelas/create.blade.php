@@ -17,6 +17,58 @@
                                 <form action="/kelas/store" method="POST">
                                     @csrf
                                     <div class="form-group">
+                                        <label for="jurusan">Jurusan</label>
+                                        <input
+                                            type="text"
+                                            name="jurusan"
+                                            class="form-control @error('jurusan') is-invalid @enderror"
+                                            id="jurusan"
+                                            required="required"
+                                            value="{{ old('jurusan') }}">
+                                        @error('jurusan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="tahun">Tahun</label>
+                                                <select name="tahun" class="form-control  @error('tahun') is-invalid @enderror" id="tahun">
+                                                <?php
+                                                for ($year = (int)date('Y'); 1990 <= $year; $year--): ?>
+                                                @if(old('tahun') == $year)
+                                                    <option value="<?=$year;?>" selected><?=$year;?></option>
+                                                @else
+                                                    <option value="<?=$year;?>"><?=$year;?></option>
+                                                @endif
+                                                <?php endfor; ?>
+                                                </select>
+                                                @error('tahun')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label for="singkat_jur">Singkat Jurusan</label>
+                                            <input
+                                                type="text"
+                                                name="singkat_jur"
+                                                class="form-control @error('singkat_jur') is-invalid @enderror"
+                                                id="singkat_jur"
+                                                required="required"
+                                                value="{{ old('singkat_jur') }}">
+                                            @error('singkat_jur')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="nama_kelas">Nama {{ $title }}</label>
                                         <input
                                             type="text"
@@ -37,59 +89,12 @@
                                             type="text"
                                             name="slug"
                                             class="form-control @error('slug') is-invalid @enderror"
-                                            id="slug" readonly>
+                                            id="slug" required="required" readonly>
                                         @error('slug')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                         @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jurusan">Jurusan</label>
-                                        <input
-                                            type="text"
-                                            name="jurusan"
-                                            class="form-control @error('jurusan') is-invalid @enderror"
-                                            id="jurusan"
-                                            required="required"
-                                            value="{{ old('jurusan') }}">
-                                        @error('jurusan')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                    <div class="row mb-2">
-                                        <div class="col">
-                                            <label for="tahun">Tahun</label>
-                                            <input
-                                                type="text"
-                                                name="tahun"
-                                                class="form-control @error('tahun') is-invalid @enderror"
-                                                id="tahun"
-                                                required="required"
-                                                value="{{ old('tahun') }}">
-                                            @error('tahun')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                        <div class="col">
-                                            <label for="singkat_jur">Singkat Jurusan</label>
-                                            <input
-                                                type="text"
-                                                name="singkat_jur"
-                                                class="form-control @error('singkat_jur') is-invalid @enderror"
-                                                id="singkat_jur"
-                                                required="required"
-                                                value="{{ old('singkat_jur') }}">
-                                            @error('singkat_jur')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
                                     </div>
                                     <div class="card-footer mr-3 mb-3 mt-0">
                                         <button class="btn btn-primary float-right" type="submit">Tambah</button>
@@ -118,7 +123,7 @@
     const slug = document.querySelector('#slug');
 
     nama_kelas.addEventListener('change', function(){
-        fetch('/kelas/create/checkSlug?nama_kelas=' + nama_kelas.value)
+        fetch('/kelas/create/checkSlug?nama_kelas=' + nama_kelas.value + ' ' + tahun.value + ' ' + singkat_jur.value)
         .then(response => response.json())
         .then(data => slug.value = data.slug)
     });

@@ -13,10 +13,11 @@
                                 <strong class="card-title">Data
                                     {{ $title }}</strong>
                             </div>
-                            <input type="hidden" name="slug_mapel" id="slug_mapel" value="{{ $slug_mapel }}">
+                            <input type="hidden" name="nama_mapel" id="nama_mapel" value="{{ $nama_mapel }}">
                             <div class="card-body">
                                 <form action="/grupsoal/store" method="POST">
                                     @csrf
+                                    <input type="hidden" name="slug_mapel" id="slug_mapel" value="{{ $slug_mapel }}">
                                     <div class="form-group">
                                         <input type="hidden" name="mapel_id" id="mapel_id" value="{{ $mapel_id }}">
                                         <input type="hidden" name="user_id" id="user_id" value="{{ auth()->user()->id }}">
@@ -68,12 +69,13 @@
 </main>
 
 <script>
+    const nama_mapel = document.querySelector('#nama_mapel');
     const nama_grup = document.querySelector('#nama_grup');
     const slug_mapel = document.querySelector('#slug_mapel');
     const slug = document.querySelector('#slug');
     
     nama_grup.addEventListener('change', function(){
-        fetch('/create/'+ slug_mapel.value +'/checkSlug?nama_grup=' + nama_grup.value)
+        fetch('/create/'+ slug_mapel.value +'/checkSlug?nama_grup=' + nama_grup.value + ' ' + nama_mapel.value)
         .then(response => response.json())
         .then(data => slug.value = data.slug)
     });

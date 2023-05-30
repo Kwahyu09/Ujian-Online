@@ -16,16 +16,19 @@
                             <div class="card-body">
                                 <form action="/siswa/store" method="POST">
                                     @csrf
+                                    <input type="hidden" name="kelas_id" id="kelas_id" value="{{ $kelas_id }}">
+                                    <input type="hidden" name="slug_kelas" id="slug_kelas" value="{{ $slug_kelas }}">
                                     <div class="form-group">
-                                        <input type="hidden" name="kelas_id" id="kelas_id" value="{{ $kelas_id }}">
-                                        <label for="nama">Nama {{ $title }}</label>
+                                    <div class="form-group">
+                                        <input type="hidden" name="role" id="role" value="{{ $role }}">
+                                        <label for="inputAddress">Nama</label>
                                         <input
                                             type="text"
                                             name="nama"
                                             class="form-control @error('nama') is-invalid @enderror"
                                             id="nama"
                                             required="required"
-                                            value="{{ old('nama') }}">
+                                            value="{{ old('nama') }}" autofocus>
                                         @error('nama')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -33,12 +36,14 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="username">Username</label>
+                                        <label for="inputAddress2">Username</label>
                                         <input
                                             type="text"
                                             name="username"
                                             class="form-control @error('username') is-invalid @enderror"
-                                            id="username">
+                                            id="username"
+                                            required="required"
+                                            value="{{ old('username') }}">
                                         @error('username')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -46,56 +51,13 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="alamat">Alamat</label>
-                                        <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" rows="3" required value="{{ old('alamat') }}"></textarea>
-                                        @error('alamat')
+                                        <label for="inputAddress2">Nik</label>
+                                        <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" id="nik" required value="{{ old('nik') }}">
+                                        @error('nik')
                                         <div class="invalid-feedback">
-                                            {{ $message }}
+                                                {{ $message }}
                                         </div>
                                         @enderror
-                                    </div>
-                                    <div class="row mb-2">
-                                        <div class="col">
-                                            <label for="tempat_lahir">Tempat Lahir</label>
-                                            <input
-                                                type="text"
-                                                name="tempat_lahir"
-                                                class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                                id="tempat_lahir"
-                                                required="required"
-                                                value="{{ old('tempat_lahir') }}">
-                                            @error('tempat_lahir')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                        <div class="col">
-                                            <label for="tanggal_lahir">Tanggal Lahir</label>
-                                            <input
-                                                type="date"
-                                                name="tanggal_lahir"
-                                                class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                                id="tanggal_lahir"
-                                                required="required"
-                                                value="{{ old('tanggal_lahir') }}">
-                                            @error('tanggal_lahir')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-check-inline mt-2">
-                                        <label for="">Jenis Kelamin : </label>
-                                    </div>
-                                    <div class="form-check form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" name="jenis_kel" id="jenis_kel" value="L">
-                                        <label class="form-check-label" for="jenis_kel">Laki-laki</label>
-                                    </div>
-                                    <div class="form-check form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" name="jenis_kel" id="jenis_kel" value="P">
-                                        <label class="form-check-label" for="jenis_kel">Perempuan</label>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">

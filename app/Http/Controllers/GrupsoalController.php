@@ -34,6 +34,7 @@ class GrupsoalController extends Controller
         return view('grupsoal.create',[
             "title" => "Grupsoal",
             "mapel_id" => $mapel->id,
+            "nama_mapel" => $mapel->nama_mapel,
             "slug_mapel" => $mapel->slug
         ]);
     }
@@ -46,7 +47,15 @@ class GrupsoalController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validatedData = $request->validate([
+            'mapel_id' => 'required',
+            'user_id' => 'required',
+            'nama_grup' => 'required|min:3|max:255',
+            'slug' => 'required|min:2|max:255|unique:App\Models\Grupsoal'
+        ]);
+
+        Grupsoal::create($validatedData);
+        return redirect('/'.$request['slug_mapel'])->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**

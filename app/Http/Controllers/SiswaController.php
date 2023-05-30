@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\User;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -30,7 +32,9 @@ class SiswaController extends Controller
     {
         return view('siswa.create',[
             "title" => "Siswa",
-            "kelas_id" => $kelas->id
+            "role" => "Siswa",
+            "kelas_id" => $kelas->id,
+            "slug_kelas" => $kelas->slug
         ]);
     }
 
@@ -42,7 +46,19 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validatedData = $request->validate([
+            'kelas_id' => 'required',
+            'nik' => 'required|min:2|max:18|unique:App\Models\User',
+            'nama' => 'required|max:255',
+            'username' => 'required|min:4|max:255|unique:App\Models\User',
+            'role' => 'required|min:4|max:9',
+            'email' => 'required|email:dns|max:255|min:4|unique:App\Models\User',
+            'password' => 'required|min:6|max:255'
+        ]);
+        
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create($validatedData);
+        return redirect('/kelas'.'/'.$request->slug_kelas)->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**

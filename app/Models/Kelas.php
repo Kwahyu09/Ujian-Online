@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -26,9 +26,9 @@ class Kelas extends Model
         });
     }
 
-    public function siswa()
+    public function user()
     {
-        return $this->hasMany(Siswa::class);
+        return $this->hasMany(User::class);
     }
 
     public function getRouteKeyName(): string

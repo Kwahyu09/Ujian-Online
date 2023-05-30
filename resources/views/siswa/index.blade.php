@@ -34,6 +34,14 @@
                             </div>
                         </div>
                         <!-- table -->
+                        @if(session()->has('success'))
+                        <div class="alert alert-success alert-block">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert">
+                                <a href="/kelas" style="text-decoration: none;">×</a>
+                            </button>
+                        </div>
+                        @endif
                         @if ($post->count())
                         <table class="table table-hover table-borderless border-v">
                             <thead class="thead-dark">
@@ -41,11 +49,8 @@
                                     <th>No</th>
                                     <th>NIK</th>
                                     <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Tempat, Tanggal Lahir</th>
-                                    <th>Jenis Kelamin(L/P)</th>
+                                    <th>Username</th>
                                     <th>Email</th>
-                                    <th>Password</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -60,11 +65,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pos->nik }}</td>
                                     <td>{{ $pos->nama }}</td>
-                                    <td>{{ $pos->alamat }}</td>
-                                    <td>{{ $pos->tempat_lahir }}, {{ $pos->tanggal_lahir }}</td>
-                                    <td>{{ $pos->jenis_kel }}</td>
+                                    <td>{{ $pos->username }}</td>
                                     <td>{{ $pos->email }}</td>
-                                    <td>{{ $pos->password }}</td>
                                     <td style="width:90px">
                                         <a href="/" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>

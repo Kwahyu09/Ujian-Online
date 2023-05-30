@@ -52,7 +52,6 @@
                                                 <th>Nama</th>
                                                 <th>Username</th>
                                                 <th>Email</th>
-                                                <th>Password</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -69,7 +68,6 @@
                                                 <td>{{ $pos->nama }}
                                                 <td>{{ $pos->username }}
                                                 <td>{{ $pos->email }}</td>
-                                                <td>{{ $pos->password }}</td>
                                                 <td style="width:90px">
                                                     <a href="/{{ $title }}" class="badge bg-warning badge-light">
                                                         <i class="fe fe-16 fe-edit"></i>

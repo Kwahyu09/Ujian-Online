@@ -15,6 +15,7 @@
                             <div class="card-body">
                                 <form class="needs-validation" action="/{{ $title }}/store" method="post">
                                     @csrf
+                                    <input type="hidden" name="kelas_id" id="kelas_id" value="">
                                     <div class="form-group">
                                         <input type="hidden" name="role" id="role" value="{{ $role }}">
                                         <label for="inputAddress">Nama</label>
@@ -24,7 +25,7 @@
                                             class="form-control @error('nama') is-invalid @enderror"
                                             id="nama"
                                             required="required"
-                                            value="{{ old('nama') }}">
+                                            value="{{ old('nama') }}" autofocus>
                                         @error('nama')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -47,7 +48,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputAddress2">Nik</label>
+                                        <label for="inputAddress2">Nip</label>
                                         <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" id="nik" required value="{{ old('nik') }}">
                                         @error('nik')
                                         <div class="invalid-feedback">

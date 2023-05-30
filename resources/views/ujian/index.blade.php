@@ -32,6 +32,14 @@
                             </div>
                         </div>
                         <!-- table -->
+                        @if(session()->has('success'))
+                        <div class="alert alert-success alert-block">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert">
+                                <a href="/ujian" style="text-decoration: none;">×</a>
+                            </button>
+                        </div>
+                        @endif
                         @if ($post->count())
                         <table class="table table-hover table-borderless border-v text-center">
                             <thead class="thead-dark">
