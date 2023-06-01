@@ -104,7 +104,8 @@ class GrupsoalController extends Controller
      */
     public function destroy(Grupsoal $grupsoal)
     {
-        //
+        Grupsoal::destroy($grupsoal->id);
+        return redirect('/mapel')->with('success', 'Data Berhasil Dihapus!');
     }
 
     public function checkSlug(Request $request)

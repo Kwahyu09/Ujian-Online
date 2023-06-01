@@ -41,7 +41,11 @@
                             <a href="/grupsoal/{{ $pos->slug }}" class="badge bg-warning badge-light"><i class="fe fe-16 fe-edit"></i>
                             </a>
                             |
-                            <a href="/grupsoal/{{ $pos->slug }}" class="badge bg-danger badge-light"><i class="fe fe-16 fe-trash-2"></i></a>
+                            <form action="/grupsoal/{{ $pos->slug }}" method="POST" class="d-inline">
+                                @method('DELETE')
+                                @csrf
+                                <button class="badge bg-danger badge-light border-0" onclick="return confirm('Yakin Data Ini Dihapus ?')"><i class="fe fe-16 fe-trash-2"></i></button>
+                              </form>
                             </td>
                           </div>
                         </div>

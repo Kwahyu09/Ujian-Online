@@ -116,7 +116,8 @@ class MapelController extends Controller
      */
     public function destroy(mapel $mapel)
     {
-        //
+        Mapel::destroy($mapel->id);
+        return redirect('/mapel')->with('success', 'Data Berhasil Dihapus!');
     }
 
     public function checkSlug(Request $request)

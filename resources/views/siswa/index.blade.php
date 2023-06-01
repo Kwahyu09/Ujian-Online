@@ -72,9 +72,12 @@
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |
-                                        <a href="/" class="badge bg-danger badge-light">
-                                            <i class="fe fe-16 fe-trash-2"></i>
-                                        </a>
+                                        <form action="{{ $title }}/{{ $pos->username }}" method="POST" class="d-inline">
+                                            @method('DELETE')
+                                            @csrf
+                                            <input type="hidden" name="slug_kelas" id="slug_kelas" value="{{ $kelas }}">
+                                            <button type="submit" class="badge bg-danger badge-light border-0" onclick="return confirm('Yakin Data Ini Dihapus ?')"><i class="fe fe-16 fe-trash-2"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

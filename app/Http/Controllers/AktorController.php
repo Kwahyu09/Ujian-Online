@@ -138,4 +138,16 @@ class AktorController extends Controller
     {
         //
     }
+
+    public function destroy_staf(User $user)
+    {
+        User::destroy($user->id);
+        return redirect('/staf')->with('success', 'Data Berhasil Dihapus!');
+    }
+
+    public function destroy_guru(User $user)
+    {
+        User::destroy($user->id);
+        return redirect('/guru')->with('success', 'Data Berhasil Dihapus!');
+    }
 }
