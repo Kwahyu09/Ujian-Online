@@ -23,12 +23,12 @@ class HomeController extends Controller
         $guru = User::where('role', 'Guru')->count();
         $siswa = User::where('role', 'Siswa')->count();
         $mapel = Mapel::count();
+        $grupsoal = Grupsoal::count();
         if(auth()->user()->role == "Guru"){
             $mapel = Mapel::where('user_id', auth()->user()->id)->count();
+            $grupsoal = Grupsoal::where('user_id', auth()->user()->id)->count();
         }
         $kelas = Kelas::count();
-        // $siswa = Siswa::count();
-        $grupsoal = Grupsoal::count();
         $soal = Soal::count();
         $ujian = Ujian::count();
         $hasilujian = Hasilujian::count();

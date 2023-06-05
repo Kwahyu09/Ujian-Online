@@ -25,7 +25,7 @@
               </a>
             </li>
           </ul>
-          @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Staf')
+          @if (Auth::user()->role == 'Admin')
           <p class="text-muted nav-heading mt-4 mb-1">
             <span>Data</span>
           </p> 
@@ -45,6 +45,18 @@
               </a>
             </li>
           </ul>
+          @endif
+          @if (Auth::user()->role == 'Staf')
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item w-100">
+              <a class="nav-link {{ ($title === "Guru") ? 'active' : '' }}" href="/guru">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Guru</span>
+              </a>
+            </li>
+          </ul>
+          @endif
+          @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Staf')
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
               <a class="nav-link {{ Request::is('/mapel*') ? 'active' : '' }}" href="/mapel">

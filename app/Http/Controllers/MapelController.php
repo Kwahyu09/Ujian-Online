@@ -93,7 +93,11 @@ class MapelController extends Controller
      */
     public function edit(mapel $mapel)
     {
-        //
+        return view('mapel.edit',[
+            "title" => "Mata Pelajaran",
+            "mapel" => $mapel,
+            "post" => User::all()->where('role','Guru')
+        ]);
     }
 
     /**
@@ -103,9 +107,21 @@ class MapelController extends Controller
      * @param  \App\Models\mapel  $mapel
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatemapelRequest $request, mapel $mapel)
+    public function update(Request $request, mapel $mapel)
     {
-        //
+        $rules = [
+            'nama_mapel' => 'required|min:2|max:50',
+            'user_id' => 'required'
+        ];
+
+        if($request->slug != $mapel->slug){
+            $rules['slug'] = 'required|min:2|max:255|unique:App\Models\Mapel';
+        }
+
+        $validatedData = $request->validate($rules);
+        Mapel::where('id', $mapel->id)
+            ->update($validatedData);
+        return redirect('/mapel')->with('success', 'Data Berhasil DiUbah!');
     }
 
     /**

@@ -47,6 +47,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Mata Pelajaran</th>
+                                    <th>Guru Pengampu</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -60,8 +61,9 @@
                                     href="#collap-2474">
                                     <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
                                     <td>{{ $pos->nama_mapel }}</td>
+                                    <td>{{ $pos->user->nama }}</td>
                                     <td>
-                                        <a href="/{{ $pos->slug }}" class="badge bg-warning badge-light">
+                                        <a href="/mapel/{{ $pos->slug }}/edit" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |

@@ -68,7 +68,7 @@
                                     <td>{{ $pos->username }}</td>
                                     <td>{{ $pos->email }}</td>
                                     <td style="width:90px">
-                                        <a href="/" class="badge bg-warning badge-light">
+                                        <a href="/siswa/{{ $pos->username }}/edit" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |

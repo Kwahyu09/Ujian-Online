@@ -77,7 +77,7 @@
                                     <td>{!! $pos->jawaban !!}</td>
                                     <td>{{ $pos->bobot }}</td>
                                     <td style="width:90px">
-                                        <a href="/{{ $title }}" class="badge bg-warning badge-light">
+                                        <a href="/soal/{{ $pos->slug }}/edit" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |

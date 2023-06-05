@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-auto">
                           <div class="file-action">
-                            <a href="/grupsoal/{{ $pos->slug }}" class="badge bg-warning badge-light"><i class="fe fe-16 fe-edit"></i>
+                            <a href="/grupsoal/{{ $pos->slug }}/edit" class="badge bg-warning badge-light"><i class="fe fe-16 fe-edit"></i>
                             </a>
                             |
                             <form action="/grupsoal/{{ $pos->slug }}" method="POST" class="d-inline">

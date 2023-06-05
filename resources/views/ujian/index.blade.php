@@ -45,6 +45,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
+                                    <th>Kode Ujian</th>
                                     <th>Nama Ujian</th>
                                     <th>Tanggal</th>
                                     <th>Kelas</th>
@@ -64,6 +65,7 @@
                                     data-parent="#c-2474"
                                     href="#collap-2474">
                                     <td>{{ ($post->currentPage() - 1)  * $post->links()->paginator->perPage() + $loop->iteration }}</td>
+                                    <td>{{ $pos->kd_ujian }}</td>
                                     <td>{{ $pos->nama_ujian }}</td>
                                     <td>{{ $pos->tanggal }}</td>
                                     <td>{{ $pos->kelas }}</td>
@@ -72,7 +74,7 @@
                                     <td>{{ $pos->waktu_mulai }}</td>
                                     <td>{{ $pos->waktu_selesai }}</td>
                                     <td style="width:90px">
-                                        <a href="/{{ $title }}" class="badge bg-warning badge-light">
+                                        <a href="/ujian/{{ $pos->slug }}/edit" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |

@@ -86,7 +86,10 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        //
+        return view('kelas.edit',[
+            "title" => "Kelas",
+            "post" => $kelas
+        ]);
     }
 
     /**
@@ -96,9 +99,23 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateKelasRequest $request, Kelas $kelas)
+    public function update(Request $request, Kelas $kelas)
     {
-        //
+        $rules = [
+            'nama_kelas' => 'required|max:50',
+            'jurusan' => 'required|max:255',
+            'tahun' => 'required|min:4|max:4',
+            'singkat_jur' => 'required|max:255'
+        ];
+
+        if($request->slug != $kelas->slug){
+            $rules['slug'] = 'required|min:2|max:255|unique:App\Models\Kelas';
+        }
+
+        $validatedData = $request->validate($rules);
+        Kelas::where('id', $kelas->id)
+            ->update($validatedData);
+        return redirect('/kelas')->with('success', 'Data Berhasil DiUbah!');
     }
 
     /**

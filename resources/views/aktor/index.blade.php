@@ -69,7 +69,7 @@
                                                 <td>{{ $pos->username }}
                                                 <td>{{ $pos->email }}</td>
                                                 <td style="width:90px">
-                                                    <a href="/{{ $title }}" class="badge bg-warning badge-light">
+                                                    <a href="/{{ $title }}/{{ $pos->username }}/edit" class="badge bg-warning badge-light">
                                                         <i class="fe fe-16 fe-edit"></i>
                                                     </a>
                                                     <form action="{{ $title }}/{{ $pos->username }}" method="POST" class="d-inline">

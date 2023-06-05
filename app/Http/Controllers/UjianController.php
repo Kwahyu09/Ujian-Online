@@ -101,7 +101,21 @@ class UjianController extends Controller
      */
     public function edit(Ujian $ujian)
     {
-        //
+        $mapel = Mapel::all();
+        $grupsoal = Grupsoal::all();
+        $kelas = Kelas::all();
+
+        if(auth()->user()->role == "Guru"){
+            $mapel = Mapel::where('user_id', auth()->user()->id)->latest()->filter(request(['search']))->paginate(1000);
+            $grupsoal = Grupsoal::where('user_id', auth()->user()->id)->latest()->filter(request(['search']))->paginate(1000);
+        }
+        return view('ujian.edit',[
+            "title" => "Ujian",
+            "mapel" => $mapel,
+            "grup_soal" => $grupsoal,
+            "post" => $ujian,
+            "kelas" => $kelas
+        ]);
     }
 
     /**
@@ -113,7 +127,26 @@ class UjianController extends Controller
      */
     public function update(Request $request, Ujian $ujian)
     {
-        //
+        $rules = [
+            'kd_ujian' => 'required|min:5|max:150',
+            'nama_ujian' => 'required|min:5|max:150',
+            'mapel' => 'required|max:255',
+            'grup_soal' => 'required|max:255',
+            'kelas' => 'required|max:255',
+            'acak_soal' => 'required',
+            'acak_jawaban' => 'required',
+            'tanggal' => 'required',
+            'waktu_mulai' => 'required',
+            'waktu_selesai' => 'required'
+        ];
+
+        if($request->slug != $ujian->slug){
+            $rules['slug'] = 'required|min:5|max:50|unique:App\Models\Ujian';
+        }
+        $validatedData = $request->validate($rules);
+        Ujian::where('id', $ujian->id)
+            ->update($validatedData);
+        return redirect('/ujian')->with('success', 'Data Berhasil DiUbah!');
     }
 
     /**

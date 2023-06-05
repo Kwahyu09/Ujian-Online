@@ -10,7 +10,7 @@
                 </div>
               </div>
               <div class="row my-4">
-                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Staf')
+                @if (Auth::user()->role == 'Admin')
                 <div class="col-md-4">
                   <div class="card shadow mb-4">
                     <div class="card-body">
@@ -26,6 +26,8 @@
                     </div> <!-- /. card-body -->
                   </div> <!-- /. card -->
                 </div> <!-- /. col -->
+                @endif
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Staf')
                 <div class="col-md-4">
                   <div class="card shadow mb-4">
                     <div class="card-body">

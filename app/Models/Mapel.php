@@ -18,7 +18,8 @@ class Mapel extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ??  false, function($query, $search){
-            return $query->where('nama_mapel', 'like', '%' . $search . '%');
+            return $query->where('nama_mapel', 'like', '%' . $search . '%')
+            ->orWhere('user_id', 'like', '%' . $search . '%');
         });
     }
 

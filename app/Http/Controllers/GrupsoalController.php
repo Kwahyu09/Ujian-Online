@@ -81,7 +81,17 @@ class GrupsoalController extends Controller
      */
     public function edit(Grupsoal $grupsoal)
     {
-        //
+
+        $nama_mapel = "";
+        if ($grupsoal->mapel_id == $grupsoal->mapel_id){
+           $nama_mapel = Mapel::find($grupsoal->mapel_id, ['slug']);;        
+        }
+        return view('grupsoal.edit',[
+            "title" => "Grupsoal",
+            "post" => $grupsoal,
+            "nama_mapel" => $nama_mapel,
+            "slug_mapel" => $nama_mapel
+        ]);
     }
 
     /**
@@ -91,9 +101,22 @@ class GrupsoalController extends Controller
      * @param  \App\Models\Grupsoal  $grupsoal
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateGrupsoalRequest $request, Grupsoal $grupsoal)
+    public function update(Request $request, Grupsoal $grupsoal)
     {
-        //
+        $rules = [
+            'mapel_id' => 'required',
+            'user_id' => 'required',
+            'nama_grup' => 'required|min:3|max:255'
+        ];
+
+        if($request->slug != $grupsoal->slug){
+            $rules['slug'] = 'required|min:2|max:255|unique:App\Models\Grupsoal';
+        }
+
+        $validatedData = $request->validate($rules);
+        Grupsoal::where('id', $grupsoal->id)
+            ->update($validatedData);
+        return redirect('/'.$grupsoal['slug'])->with('success', 'Data Berhasil DiUbah!');
     }
 
     /**

@@ -64,7 +64,7 @@
                                     <td>{{ $pos->tahun }}</td>
                                     <td>{{ $pos->jurusan }} ({{ $pos->singkat_jur }})</td>
                                     <td style="width:90px">
-                                        <a href="/{{ $slug }}/{{ $pos->slug }}" class="badge bg-warning badge-light">
+                                        <a href="/{{ $slug }}/{{ $pos->slug }}/edit" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
                                         |
