@@ -24,11 +24,26 @@ class UjianController extends Controller
         ]);
     }
 
+    public function index_siswa()
+    {
+        return view('ujian_siswa.index',[
+            "title" => "Ujian Siswa",    
+            "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
+        ]);
+    }
+    public function index_masuk()
+    {
+        return view('ujian_siswa.masuk',[
+            "title" => "Ujian Siswa",    
+            "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
+        ]);
+    }
+
     public function ujianhasil()
     {
         return view('ujianhasil', [
         "title" => "Ujian Hasil",
-        "post" => Ujian::latest()
+        "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
         ]);
     }
 

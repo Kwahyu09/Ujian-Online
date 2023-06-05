@@ -8,7 +8,7 @@
                     <div class="card-body">
                     <div class="row align-items-center my-2">
                         <div class="col">
-                        <h3>Laporan Nilai</h3>
+                        <h3>Hasil Ujian Siswa SMK N 4 Kota Bengkulu</h3>
                         <br>
                         <h5>Silahkan Pilih Ujian : </h5>
                         <br>

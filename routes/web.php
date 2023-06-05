@@ -82,7 +82,11 @@ Route::resource('/ujian', UjianController::class)->middleware(['auth']);
 
 Route::get('/ujianhasil', [UjianController::class,'ujianhasil'])->middleware(['auth']);
 
+Route::get('/ujiansiswa/masuk', [UjianController::class,'index_masuk'])->middleware(['auth']);
+
 Route::get('/lapnilai', [HasilujianController::class,'index'])->middleware(['auth']);
+
+Route::get('/ujian-siswa', [UjianController::class,'index_siswa'])->middleware(['auth']);
 
 Route::get('/{mapel:slug}',[MapelController::class, 'show'])->middleware(['auth']);
 
