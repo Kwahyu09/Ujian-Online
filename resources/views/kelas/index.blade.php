@@ -31,14 +31,8 @@
                                 </form>
                             </div>
                         </div>
-                        @if(session()->has('success'))
-                        <div class="alert alert-success alert-block">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert">
-                                <a href="/kelas" style="text-decoration: none;">×</a>
-                            </button>
+                        <div class="flash-data" data-flashdata="{{ session('success') }}">
                         </div>
-                        @endif
                         @if ($post->count())
                         <!-- table -->
                         <table class="table table-hover table-borderless border-v text-center">
@@ -67,12 +61,9 @@
                                         <a href="/{{ $slug }}/{{ $pos->slug }}/edit" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
-                                        |
-                                        <form action="kelas/{{ $pos->slug }}" method="POST" class="d-inline">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="badge bg-danger badge-light border-0" onclick="return confirm('Yakin Data Ini Dihapus ?')"><i class="fe fe-16 fe-trash-2"></i></button>
-                                        </form>
+                                        <a href="/kelas/{{ $pos->slug }}/delete" class="badge bg-danger badge-light tombol-hapus">
+                                            <i class="fe fe-16 fe-trash-2"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

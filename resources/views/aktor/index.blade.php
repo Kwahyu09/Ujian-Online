@@ -31,14 +31,8 @@
                                 </form>
                             </div>
                         </div>
-                        @if(session()->has('success'))
-                        <div class="alert alert-success alert-block">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert">
-                                <a href="/{{ $title }}" style="text-decoration: none;">×</a>
-                            </button>
+                        <div class="flash-data" data-flashdata="{{ session('success') }}">
                         </div>
-                        @endif
                         @if ($post->count())
                         <!-- table -->
                         <div class="card">
@@ -72,11 +66,9 @@
                                                     <a href="/{{ $title }}/{{ $pos->username }}/edit" class="badge bg-warning badge-light">
                                                         <i class="fe fe-16 fe-edit"></i>
                                                     </a>
-                                                    <form action="{{ $title }}/{{ $pos->username }}" method="POST" class="d-inline">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="submit" class="badge bg-danger badge-light border-0" onclick="return confirm('Yakin Data Ini Dihapus ?')"><i class="fe fe-16 fe-trash-2"></i></button>
-                                                    </form>
+                                                    <a href="/{{ $title }}/{{ $pos->username }}/delete" class="badge bg-danger badge-light tombol-hapus">
+                                                        <i class="fe fe-16 fe-trash-2"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @endforeach

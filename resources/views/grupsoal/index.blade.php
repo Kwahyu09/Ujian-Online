@@ -11,14 +11,8 @@
                   <a href="/create/{{ $slug }}" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-1"></span>Tambah</a>
                 </div>
               </div>
-              @if(session()->has('success'))
-                  <div class="alert alert-success alert-block">
-                    {{ session('success') }}
-                      <button type="button" class="close" data-dismiss="alert">
-                          <a href="/" style="text-decoration: none;">×</a>
-                      </button>
-                </div>
-              @endif
+              <div class="flash-data" data-flashdata="{{ session('success') }}">
+              </div>
               @if ($post->count())
               <div class="row">
                 @foreach ($post as $pos)
@@ -40,12 +34,9 @@
                           <div class="file-action">
                             <a href="/grupsoal/{{ $pos->slug }}/edit" class="badge bg-warning badge-light"><i class="fe fe-16 fe-edit"></i>
                             </a>
-                            |
-                            <form action="/grupsoal/{{ $pos->slug }}" method="POST" class="d-inline">
-                                @method('DELETE')
-                                @csrf
-                                <button class="badge bg-danger badge-light border-0" onclick="return confirm('Yakin Data Ini Dihapus ?')"><i class="fe fe-16 fe-trash-2"></i></button>
-                              </form>
+                            <a href="/grupsoal/{{ $pos->slug }}/delete" class="badge bg-danger badge-light tombol-hapus">
+                              <i class="fe fe-16 fe-trash-2"></i>
+                            </a>
                             </td>
                           </div>
                         </div>

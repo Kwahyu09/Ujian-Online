@@ -12,16 +12,8 @@
                                 <strong class="card-title">Data
                                     {{ $title }}</strong>
                             </div>
-                            @if(session()->has('success'))
-                                <div class="alert alert-success alert-block">
-                                    {{ session('success') }}
-                                    <button type="button" class="close" data-dismiss="alert">
-                                        <a href="/" style="text-decoration: none;">×</a>
-                                    </button>
-                                </div>
-                            @endif
                             <div class="card-body">
-                                <form action="/soal/{{ $post->slug }}/update" method="POST">
+                                <form action="/soal/{{ $post->slug }}/update" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="row mb-4">

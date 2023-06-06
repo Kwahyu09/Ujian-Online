@@ -141,6 +141,6 @@ class SoalController extends Controller
     public function destroy(Soal $soal)
     {
         Soal::destroy($soal->id);
-        return redirect('/mapel')->with('success', 'Data Berhasil Dihapus!');
+        return back()->with('success', 'Data Berhasil Dihapus!');
     }
 }

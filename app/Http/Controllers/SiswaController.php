@@ -116,7 +116,7 @@ class SiswaController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::where('id', $user->id)
             ->update($validatedData);
-        return redirect('/kelas')->with('success', 'Data Berhasil Diubah!');
+        return back()->with('success', 'Data Berhasil Diubah!');
     }
 
     /**
@@ -128,6 +128,6 @@ class SiswaController extends Controller
     public function destroy(User $user)
     {
         User::destroy($user->id);
-        return redirect('/kelas')->with('success', 'Data Berhasil Dihapus!');
+        return back()->with('success', 'Data Berhasil Dihapus!');
     }
 }
