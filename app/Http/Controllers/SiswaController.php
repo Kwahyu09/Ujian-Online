@@ -17,7 +17,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        return view('siswa',[
+        return view('siswa.index',[
             "title" => "Siswa"
         ]);
     }
@@ -111,12 +111,13 @@ class SiswaController extends Controller
         if($request->email != $user->email){
             $rules['email'] = 'required|email:dns|max:255|min:4|unique:App\Models\User';
         }
+        $slug = $user->kelas->slug;
 
         $validatedData = $request->validate($rules);
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::where('id', $user->id)
             ->update($validatedData);
-        return back()->with('success', 'Data Berhasil Diubah!');
+        return redirect('/kelas'.'/'.$slug)->with('success', 'Data Berhasil Diubah!');
     }
 
     /**

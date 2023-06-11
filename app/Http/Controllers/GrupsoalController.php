@@ -7,7 +7,7 @@ use App\Models\Mapel;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreGrupsoalRequest;
 use App\Http\Requests\UpdateGrupsoalRequest;
-
+use App\Models\Soal;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class GrupsoalController extends Controller
@@ -64,12 +64,23 @@ class GrupsoalController extends Controller
      * @param  \App\Models\Grupsoal  $grupsoal
      * @return \Illuminate\Http\Response
      */
-    public function show(Grupsoal $grupsoal)
+    public function show(Request $request, Grupsoal $grupsoal)
     {
+        $id_mapel = $grupsoal->mapel_id;
+        $search = $request->get('search');
          return view('soal.index',[
             "title" => "Soal",
             'grup' => $grupsoal->slug,
-            'post' => $grupsoal->soal
+            'post' => Soal::where('grupsoal_id', $grupsoal->id)->where(function ($query) use ($search) { 
+                $query->where('kd_soal', 'like', '%' . $search . '%')
+                  ->orWhere('pertanyaan', 'like', '%' . $search . '%')
+                  ->orWhere('opsi_a', 'like', '%' . $search . '%')
+                  ->orWhere('opsi_b', 'like', '%' . $search . '%')
+                  ->orWhere('opsi_c', 'like', '%' . $search . '%')
+                  ->orWhere('opsi_d', 'like', '%' . $search . '%')
+                  ->orWhere('jawaban', 'like', '%' . $search . '%')
+                  ->orWhere('bobot', 'like', '%' . $search . '%');
+            })->get()
         ]);
     }
 

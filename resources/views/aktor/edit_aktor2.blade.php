@@ -8,14 +8,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card shadow mb-4">
-                                @if(session()->has('success'))
-                                    <div class="alert alert-success alert-block">
-                                        {{ session('success') }}
-                                        <button type="button" class="close" data-dismiss="alert">
-                                            <a href="/{{ $title }}" style="text-decoration: none;">×</a>
-                                        </button>
-                                    </div>
-                                    @endif
+                                <div class="flash-data" data-flashdata="{{ session('success') }}">
+                                </div>
                                 <div class="card-header">
                                 <strong class="card-title">Data
                                     {{ $title }}</strong>
@@ -57,7 +51,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputAddress2">Nip</label>
+                                        <label for="inputAddress2">Nip / Nik</label>
                                         <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" id="nik" required value="{{ old('nik', $post->nik) }}">
                                         @error('nik')
                                         <div class="invalid-feedback">

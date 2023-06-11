@@ -17,6 +17,14 @@
               </a>
             </li>
           </ul>
+          @if(Request::is('masuk-ujian*') || Request::is('selesaiujian*'))
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+              <li class="nav-item w-100">
+                  <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}" href="">
+              </a>
+            </li>
+          </ul>
+          @else
           <ul class="navbar-nav flex-fill w-100 mb-2">
               <li class="nav-item w-100">
                   <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}" href="/">
@@ -25,6 +33,7 @@
               </a>
             </li>
           </ul>
+          @endif
           @if (Auth::user()->role == 'Admin')
           <p class="text-muted nav-heading mt-4 mb-1">
             <span>Data</span>
@@ -112,17 +121,33 @@
           </ul>
           @endif
           @if (Auth::user()->role == 'Siswa')
-          <p class="text-muted nav-heading mt-4 mb-1">
-            <span>Menu Ujian</span>
-          </p>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item w-100">
-              <a class="nav-link {{ ($title === "Ujian Siswa") ? 'active' : '' }}" href="/ujian-siswa">
-                <i class="fe fe-folder fe-16"></i>
-                <span class="ml-3 item-text">Ujian</span>
-              </a>
-            </li>
-          </ul>
+            @if(Request::is('masuk-ujian*') || Request::is('selesaiujian*'))
+            <p class="text-muted nav-heading mt-4 mb-1">
+              <span></span>
+            </p>
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+              <li class="nav-item w-100">
+                <a class="nav-link " href="">
+                </a>
+              </li>
+            </ul>
+            @else
+            <p class="text-muted nav-heading mt-4 mb-1">
+              <span>Menu Ujian</span>
+            </p>
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+              <li class="nav-item w-100 {{ Request::is('ujian-mahasiswa*') || Request::is('ujian-data*') ? 'active' : '' }}">
+                  @if(Request::is('masuk-ujian*') || Request::is('selesaiujian*'))
+                    <a href=""  data-toggle="nav-link"></a>
+                  @else
+                  <a class="nav-link {{ ($title === "Ujian Siswa") ? 'active' : '' }}" href="/ujian-siswa">
+                    <i class="fe fe-folder fe-16"></i>
+                    <span class="ml-3 item-text">Ujian</span>
+                  </a>
+                  @endif
+              </li>
+            </ul>
+            @endif
           @endif
         </nav>
       </aside>

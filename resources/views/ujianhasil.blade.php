@@ -12,12 +12,13 @@
                         <br>
                         <h5>Silahkan Pilih Ujian : </h5>
                         <br>
-                        <form action="/lapnilai">
+                        <form action="{{ route('hasilujian.hasil_ujian') }}" method="post">
+                          @csrf
                         <div class="input-group mb-3">
-                          <select class="custom-select" id="inputGroupSelect01">
+                          <select class="form-control" id="ujian_id" name="ujian_id">
                             <option selected>Pilih...</option>
                             @foreach ($post as $pos)
-                            <option value="{{ $pos->nama_ujian }}">{{ $pos->nama_ujian }}</option>
+                            <option value="{{ $pos->id }}">{{ $pos->nama_ujian }}</option>
                             @endforeach
                           </select>
                         </div>

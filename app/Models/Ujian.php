@@ -31,6 +31,27 @@ class Ujian extends Model
     {
         return $this->hasOne(Hasilujian::class);
     }
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class);
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(kelas::class);
+    }
+    public function simpanujian()
+    {
+        return $this->hasOne(SimpanUjian::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function grup_soal()
+    {
+        return $this->hasOne(Grup_soal::class);
+    }
 
     public function getRouteKeyName(): string
     {

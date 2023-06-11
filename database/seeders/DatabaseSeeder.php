@@ -3,14 +3,16 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 use Database\Seeders\SoalSeeder;
+use Database\Seeders\UserSeeder;
 use Database\Seeders\KelasSeeder;
 use Database\Seeders\MapelSeeder;
-use Database\Seeders\SiswaSeeder;
 use Database\Seeders\UjianSeeder;
 use Database\Seeders\GrupsoalSeeder;
 use Database\Seeders\HasilujianSeeder;
+use Database\Seeders\SimpanUjianSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,9 +30,6 @@ class DatabaseSeeder extends Seeder
             MapelSeeder::class
         ]);
         $this->call([
-            SiswaSeeder::class
-        ]);
-        $this->call([
             GrupsoalSeeder::class
         ]);
         $this->call([
@@ -41,6 +40,9 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             HasilujianSeeder::class
+        ]);
+        $this->call([
+            SimpanUjianSeeder::class
         ]);
         $this->call([
             UserSeeder::class

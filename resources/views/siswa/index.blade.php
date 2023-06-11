@@ -16,7 +16,7 @@
                                     <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
                             </div>
                             <div class="col-auto">
-                                <form class="form-inline mr-auto searchform">
+                                <form action="{{ url()->full() }}" class="form-inline mr-auto searchform">
                                     <div class="input-group mb-3">
                                         <input
                                             type="text"
@@ -39,7 +39,7 @@
                         @if ($post->count())
                         <table class="table table-hover table-borderless border-v">
                             <thead class="thead-dark">
-                                <tr>
+                                <tr> 
                                     <th>No</th>
                                     <th>NIK</th>
                                     <th>Nama</th>

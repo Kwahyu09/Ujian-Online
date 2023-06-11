@@ -63,4 +63,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Kelas::class);
     }
+    public function ujian()
+    {
+        return $this->hasMany(Ujian::class);
+    }
 }

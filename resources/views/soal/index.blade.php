@@ -14,8 +14,7 @@
                                 <a href="/soal/create/{{ $grup }}" class="btn btn-primary">
                                     <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
                             </div>
-                            <div class="col-auto">
-                                <form class="form-inline mr-auto searchform">
+                                <form action="{{ url()->full() }}" class="form-inline mr-auto searchform">
                                     <div class="input-group mb-3">
                                         <input
                                             type="text"
@@ -31,12 +30,11 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                        <div class="flash-data" data-flashdata="{{ session('success') }}">
-                        </div>
-                        @if ($post->count())
-                        <!-- table -->
-                        <table class="table table-hover table-borderless border-v text-center">
+                            <div class="flash-data" data-flashdata="{{ session('success') }}">
+                            </div>
+                            @if ($post->count())
+                            <!-- table -->
+                            <table class="table table-hover table-borderless border-v">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
@@ -86,15 +84,16 @@
                         <p class="text-center fs-4">Tidak Ada Data
                             {{ $title }} {{ $grup }}</p>
                         @endif
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- end section -->
         </div>
-        <!-- end section -->
+        <!-- .col-12 -->
     </div>
-    <!-- .col-12 -->
-</div>
-<!-- .row -->
+    <!-- .row -->
 </div>
 <!-- .container-fluid -->
 @endsection

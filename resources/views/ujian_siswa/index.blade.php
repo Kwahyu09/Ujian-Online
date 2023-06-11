@@ -9,26 +9,24 @@
                                 <h3>Menu Ujian Siswa SMK N 4 Kota Bengkulu</h3>
                             </div>
                             <div class="card-body">
-                                <form action="" method="GET">
+                            <div class="flash-data" data-flashdata="{{ session('success') }}">
+                            </div>
+                            <form action="{{ route('ujian-data') }}" method="POST">
+                                @csrf
                                     <div class="form-group">
                                         <label for="nama_ujian">Nama Ujian</label>
-                                        <select class="form-control" id="nama_ujian" name="nama_ujian">
+                                        <select class="form-control" id="id_ujian" name="id_ujian" required>
                                             @foreach ($post as $pos)
                                                 @if(old('nama_ujian')  == $pos->nama_ujian )
-                                                    <option value="{{ $pos->nama_ujian }}" selected>{{ $pos->nama_ujian }}</option>
+                                                    <option value="{{ $pos->id }}" selected>{{ $pos->nama_ujian }}</option>
                                                 @else
-                                                    <option value="{{ $pos->nama_ujian }}">{{ $pos->nama_ujian }}</option>
+                                                    <option value="{{ $pos->id }}">{{ $pos->nama_ujian }}</option>
                                                 @endif
                                             @endforeach
                                             </select>
-                                        @error('nama_ujian')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="nama_ujian">Kode Ujian</label>
+                                        <label for="kd_ujian">Kode Ujian</label>
                                         <input
                                             type="text"
                                             name="kd_ujian"
@@ -43,7 +41,7 @@
                                         @enderror
                                     </div>
                                     <div class="card-footer mr-3 mb-3 mt-0">
-                                        <a href="/ujiansiswa/masuk" class="btn btn-primary float-right" type="submit">Masuk</a>
+                                        <input href="/ujian-siswa/masuk" class="btn btn-primary float-right" value="Masuk Ujian" type="submit">
                                     </div>
                                 </form>
                             </div>

@@ -32,6 +32,10 @@ class Mapel extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function ujian()
+    {
+        return $this->hasMany(ujian::class);
+    }
 
     public function getRouteKeyName(): string
     {

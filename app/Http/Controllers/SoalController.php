@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreSoalRequest;
 use App\Http\Requests\UpdateSoalRequest;
 use App\Models\Grupsoal;
+use App\Models\Mapel;
 
 class SoalController extends Controller
 {
@@ -31,6 +32,8 @@ class SoalController extends Controller
             "title" => "Soal",
             "kd_soal" => uniqid(),
             "grupsoal_id" => $grupsoal->id,
+            "grupsoal_nama" => $grupsoal->nama_grup,
+            "modul" => Mapel::find($grupsoal->modul_id,['nama_modul']),
             "grupsoal_slug" => $grupsoal->slug
         ]);
     }
@@ -127,9 +130,11 @@ class SoalController extends Controller
         }else{
             $validatedData['jawaban'] = $request['opsi_d'];
         }
+
+        $slug = $soal->grupsoal->slug;
         Soal::where('id', $soal->id)
             ->update($validatedData);
-        return redirect('/soal'.'/'.$request['slug'])->with('success', 'Data Berhasil DiUbah!');
+        return redirect('/grupsoal'.'/'.$slug)->with('success', 'Data Berhasil DiUbah!');
     }
 
     /**

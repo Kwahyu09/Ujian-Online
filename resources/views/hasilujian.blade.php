@@ -5,48 +5,39 @@
             <div class="col-12">
                 <h2 class="h3 mb-0 page-title">Data
                     {{ $title }}</h2>
-                <br>
-                <div class="card shadow">
-                    <div class="card-body">
-                        <div class="row align-items-center my-3">
-                            <div class="col">
-                                <button type="button" class="btn btn-info">
-                                    <span class="fe fe-printer fe-12 mr-2"></span>Cetak</button>
+                    <br>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row align-items-center my-3">
+                                <div class="col">
+                                    <form method="post" action="{{ route('cetak') }}">
+                                        @csrf
+                                        <input type="hidden" name="ujian_id" id="ujian_id" value="{{ $ujian->id }}">
+                                        <button class="btn btn-info"><span class="fe fe-printer fe-12 mr-2"></span>Cetak</button>
+                                    </form>
+                                </div>
+                                <div class="col-auto">
+                                </div>
                             </div>
-                            <div class="col-auto">
-                                <form class="form-inline mr-auto searchform text-muted">
-                                    <div class="input-group mb-3">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            placeholder="Cari.."
-                                            name="search"
-                                            value="{{ request('search') }}">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">
-                                                <i class="fe fe-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row align-items-center my-2">
-                            <div class="col">
-                                <h3>Laporan Nilai</h3>
-                                <br>
-                                <h5>Kelas : X-2023-NKPI</h5>
-                                <h5>Mata Pelajaran : Fisika</h5>
-                            </div>
+                            <div class="row align-items-center my-2">
+                                <div class="col">
+                                    <h3>Laporan Nilai</h3>
+                                    <br>
+                                    <h5>Kelas : {{ $ujian->kelas }}</h5>
+                                    <h5>Mata Pelajaran : {{ $ujian->mapel }}</h5>
+                                </div>
                             <div class="col">
                                 <br>
                                 <br>
                                 <br>
-                                <h5>Nama Ujian : Ujian Tengah Semester</h5>
-                                <h5>Tanggal : 2023-11-04</h5>
+                                <h5>Nama Ujian : {{ $ujian->nama_ujian }}</h5>
+                                <h5>Tanggal : {{ $ujian->tanggal }}</h5>
                                 <br>
                             </div>
                         </div>
+                        <div class="flash-data" data-flashdata="{{ session('success') }}">
+                        </div>
+                        @if ($hasil->count())
                         <!-- table -->
                         <table class="table table-hover table-borderless border-v text-center">
                             <thead class="thead-dark">
@@ -58,28 +49,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
-                                    class="accordion-toggle collapsed"
-                                    id="c-2474"
-                                    data-toggle="collapse"
-                                    data-parent="#c-2474"
-                                    href="#collap-2474">
-                                    <td>1</td>
-                                    <td>78375189300728</td>
-                                    <td>Muhammad Riski</td>
-                                    <td>90</td>
+                                @foreach ($hasil as $has)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $has->nik_siswa }}</td>
+                                    <td>{{ $has->nama_siswa }}</td>
+                                    <td>{{ $has->nilai }}</td>
                                 </tr>
-                                <tr
-                                    class="accordion-toggle collapsed"
-                                    id="c-2474"
-                                    data-toggle="collapse"
-                                    data-parent="#c-2474"
-                                    href="#collap-2474">
-                                    <td>2</td>
-                                    <td>95289300754538</td>
-                                    <td>Mawar Puspita</td>
-                                    <td>95</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -89,8 +66,9 @@
         <!-- end section -->
     </div>
     <!-- .col-12 -->
-</div>
-<!-- .row -->
-</div>
+@else
+    <p class="text-center fs-4">Tidak Ada Data
+        {{ $title }}</p>
+ @endif
 <!-- .container-fluid -->
 @endsection

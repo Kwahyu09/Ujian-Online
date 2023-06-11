@@ -26,7 +26,8 @@ class UjianSeeder extends Seeder
             'acak_jawaban' => 'Y',
             'tanggal' => '2023-11-04',
             'waktu_mulai' => '2023-04-11 10:14:31',
-            'waktu_selesai' => '2023-04-11 14:14:31'
+            'waktu_selesai' => '2023-04-11 14:14:31',
+            'user_id' => '5'
         ]);
     }
 }

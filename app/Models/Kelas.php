@@ -30,6 +30,11 @@ class Kelas extends Model
     {
         return $this->hasMany(User::class);
     }
+    
+    public function ujian()
+    {
+        return $this->hasMany(ujian::class);
+    }
 
     public function getRouteKeyName(): string
     {

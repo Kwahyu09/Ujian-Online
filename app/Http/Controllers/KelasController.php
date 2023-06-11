@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateKelasRequest;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -69,12 +70,18 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas)
+    public function show(Request $request, Kelas $kelas)
     {
+        $search = $request->get('search');
         return view('siswa.index',[
             'title' => 'siswa',
             'kelas' => $kelas->slug,
-            'post' => $kelas->user
+            'post' => User::where('kelas_id', $kelas->id)->where(function ($query) use ($search) {
+                $query->where('username', 'like', '%'. $search .'%')
+            ->orWhere('nama', 'like', '%' . $search . '%')
+            ->orWhere('nik', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%');
+            })->get()
         ]);
     }
 

@@ -57,17 +57,25 @@
                     <h1 class="h5">Sistem Informasi Ujian Online</h1>
                     <h1 class="h5 mb-3">SMK N 4 Kota Bengkulu</h1>
                     <div class="form-group">
-                        <label for="email" class="sr-only ">Email address</label>
+                        <select name="role" class="form-control" id="role" required="required">
+                            <option value="Siswa">Siswa/Siswi</option>                
+                            <option value="Guru">Guru</option>
+                            <option value="Staf">Staf</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nik" class="sr-only">NIP / NIK</label>
                         <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            class="form-control form-control-lg @error('email') is-invalid @enderror"
-                            placeholder="Email.."
+                            type="nik"
+                            name="nik"
+                            id="nik"
+                            class="form-control form-control-lg @error('nik') is-invalid @enderror"
+                            placeholder="NIP / NIK"
                             required
                             autofocus
-                            value="{{ old('email') }}">
-                        @error('email')
+                            value="{{ old('nik') }}">
+                        @error('nik')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -80,7 +88,7 @@
                             name="password"
                             id="password"
                             class="form-control form-control-lg"
-                            placeholder="Password.."
+                            placeholder="Password"
                             required="required">
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>

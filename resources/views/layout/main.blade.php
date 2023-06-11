@@ -32,10 +32,44 @@
         display: none;
       }
     </style>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/jam.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+      #chartContainer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .chart {
+        width: 100%;
+        height: 300px;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #watch {
+            color: rgb(252, 150, 65);
+            position: absolute;
+            z-index: 1;
+            height: 40px;
+            width: 700px;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            font-size: 10vw;
+            -webkit-text-stroke: 3px rgb(210, 65, 36);
+            text-shadow: 4px 4px 10px rgba(210, 65, 36, 0.4),
+                4px 4px 20px rgba(210, 45, 26, 0.4),
+                4px 4px 30px rgba(210, 25, 16, 0.4),
+                4px 4px 40px rgba(210, 15, 06, 0.4);
+        }
+    </style>
   </head>
-  <body class="vertical light">
+  <body class="vertical light" onload="realtimeClock()">
     <div class="wrapper">
       <nav class="topnav navbar navbar-light">
         <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">

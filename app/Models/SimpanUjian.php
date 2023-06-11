@@ -2,22 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\Ujian;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Hasilujian extends Model
+class SimpanUjian extends Model
 {
     use HasFactory;
-
     protected $guarded = ['id'];
 
     public function ujian()
     {
-        return $this->belongsTo(Ujian::class);
+        return $this->belongsTo(ujian::class);
     }
+
     public function soal()
     {
-        return $this->belongsTo(Soal::class);
+        return $this->belongsTo(soal::class);
     }
 }

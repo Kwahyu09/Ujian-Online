@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use DateTimeZone;
 use App\Models\Grupsoal;
 use App\Models\Mapel;
 use App\Models\Kelas;
+use App\Models\Soal;
 use App\Models\Ujian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Hasilujian;
+use App\Models\SimpanUjian;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class UjianController extends Controller
@@ -18,29 +24,105 @@ class UjianController extends Controller
      */
     public function index()
     {
+        $ujian = Ujian::latest()->filter(request(['search']))->paginate(1000);
+
+        if(auth()->user()->role == "Ketua"){
+            $ujian = Ujian::where('user_id', auth()->user()->id)->latest()->filter(request(['search']))->paginate(1000);
+        }
         return view('ujian.index', [
         "title" => "Ujian",
-        "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
+        "post" => $ujian
         ]);
     }
 
     public function index_siswa()
     {
+        $kelas = Auth::user()->kelas;
+        $ujian = Ujian::where('kelas', $kelas->slug)->get();
+
         return view('ujian_siswa.index',[
             "title" => "Ujian Siswa",    
-            "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
+            "post" => $ujian
         ]);
     }
-    public function index_masuk()
+    
+    public function ujian_data(Request $request)
     {
-        return view('ujian_siswa.masuk',[
-            "title" => "Ujian Siswa",    
-            "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
+        $timezone = 'Asia/Jakarta'; 
+        $date = new DateTime('now', new DateTimeZone($timezone)); 
+        $tanggal = $date->format('Y-m-d');
+        $jam = $date->format('H:i:s');
+
+
+        $request->validate([
+            'id_ujian' => 'required',
+            'kd_ujian' => 'required'
+        ]);
+        $idujian = $request->id_ujian;
+        $kode = $request->kd_ujian;
+        
+        $ujian = Ujian::find($idujian);
+        $nik = Auth::user()->nik;
+        $hasil = Hasilujian::where('nik_siswa', $nik)->where('ujian_id',$idujian)->count();
+        if ($kode == $ujian->kd_ujian) {
+            if($ujian->tanggal === $tanggal && $ujian->waktu_mulai <= $jam && $ujian->waktu_selesai >= $jam){
+                if($hasil === 1){
+                    return back()->with('success', 'Anda Sudah Mengerjakan Ujian');
+                }else{
+                    return view('ujian_siswa.masuk', [
+                        "title" => "Ujian Mahasiswa",
+                        "post" => $ujian
+                        ]);
+                }
+            }else {
+            return back()->with('success', 'Waktu Ujian Belum dimulai');
+         }
+        }
+        else {
+            return back()->with('success', 'Kode Ujian Salah');
+        }
+
+    }
+
+    public function masuk_ujian(Ujian $ujian)
+    {
+        $timezone = 'Asia/Jakarta'; 
+        $date = new DateTime('now', new DateTimeZone($timezone));
+        $tanggal = $date->format('Y-m-d');
+        $jam = $date->format('H:i:s');
+
+        $slug = $ujian->grup_soal;
+        $grup = Grupsoal::where('slug', $slug)->get();
+        $id_grup = $grup[0]['id'];
+        $soal = Soal::latest()->where('grupsoal_id',$id_grup)->paginate(1);
+        
+        $nik = Auth::user()->nik;
+        $simpan = SimpanUjian::where('ujian_id', $ujian->id)->where('nik_siswa',$nik)->get();
+        return view('ujian_siswa.masuk_ujian',  [
+            "title" => "Ujian Mahasiswa",
+            "soal" => $soal,
+            "ujian" => $ujian,
+            "jam" => $jam,
+            "tanggal" => $tanggal,
+            "evaluasi" => $simpan
+        ]);
+    }
+
+    public function selesai_ujian()
+    {
+         return view('ujian_siswa.hasil_ujian',  [
+            "title" => "Ujian Mahasiswa",
+            "soal" => Ujian::latest()->paginate(1)
         ]);
     }
 
     public function ujianhasil()
     {
+        $ujian = Ujian::latest()->paginate(1000);
+
+        if(auth()->user()->role == "Ketua"){
+            $ujian = Ujian::where('user_id', auth()->user()->id)->latest();
+        }
         return view('ujianhasil', [
         "title" => "Ujian Hasil",
         "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
