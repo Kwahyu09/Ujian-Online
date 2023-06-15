@@ -4,13 +4,12 @@
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-12">
+              <div class="flash-data" data-flashdata="{{ session('success') }}">
+              </div>
               <div class="row align-items-center mb-2">
                 <div class="col">
                   <h2 class="h5 page-title">Selamat Datang {{ $aktor }} !</h2>
                 </div>
-              </div>
-              <div class="flash-data" data-flashdata="{{ session('success') }}">
-              </div>
               <div class="row my-4">
                 @if (Auth::user()->role == 'Admin')
                 <div class="col-md-4">

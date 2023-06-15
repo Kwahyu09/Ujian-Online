@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Kelas;
-use App\Models\Siswa;
 use App\Models\Ujian;
 use App\Models\Hasilujian;
 use App\Models\Grupsoal;
 use App\Models\Soal;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller

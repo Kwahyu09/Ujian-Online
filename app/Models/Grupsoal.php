@@ -22,6 +22,15 @@ class Grupsoal extends Model
         });
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($grupsoal) {
+            $grupsoal->soal()->delete(); // Hapus data ujian yang berelasi
+        });
+    }
+
     public function mapel()
     {
         return $this->belongsTo(Mapel::class);

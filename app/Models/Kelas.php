@@ -26,6 +26,15 @@ class Kelas extends Model
         });
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($kelas) {
+            $kelas->user()->delete(); // Hapus data ujian yang berelasi
+        });
+    }
+
     public function user()
     {
         return $this->hasMany(User::class);

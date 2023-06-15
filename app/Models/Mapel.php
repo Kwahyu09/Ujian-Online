@@ -23,6 +23,15 @@ class Mapel extends Model
         });
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($mapel) {
+            $mapel->grupsoal()->delete(); // Hapus data ujian yang berelasi
+        });
+    }
+
     public function grupsoal()
     {
         return $this->hasMany(Grupsoal::class);

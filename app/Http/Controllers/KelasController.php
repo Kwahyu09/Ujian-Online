@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateKelasRequest;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class KelasController extends Controller
@@ -133,6 +132,10 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
+        $siswa = User::where('kelas_id',$kelas->id)->get();
+        if($siswa != NULL){
+            $kelas->user()->delete();
+        } 
         Kelas::destroy($kelas->id);
         return redirect('/kelas')->with('success', 'Data Berhasil Dihapus!');
     }

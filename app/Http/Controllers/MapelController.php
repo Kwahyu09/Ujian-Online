@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdatemapelRequest;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class MapelController extends Controller
@@ -132,6 +131,7 @@ class MapelController extends Controller
      */
     public function destroy(mapel $mapel)
     {
+        $mapel->grupsoal()->delete(); // Hapus data modul yang berelasi
         Mapel::destroy($mapel->id);
         return redirect('/mapel')->with('success', 'Data Berhasil Dihapus!');
     }

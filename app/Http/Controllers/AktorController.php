@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\confirmDelete;
 
 class AktorController extends Controller
 {
@@ -61,7 +60,7 @@ class AktorController extends Controller
     {
         $validatedData = $request->validate([
             'kelas_id' => 'max:255',
-            'nik' => 'required|min:2|max:18|unique:App\Models\User',
+            'nik' => 'required|min:16|max:16|unique:App\Models\User',
             'nama' => 'required|max:255',
             'username' => 'required|min:4|max:255|unique:App\Models\User',
             'role' => 'required|min:4|max:9',
@@ -77,7 +76,7 @@ class AktorController extends Controller
     public function store_guru(Request $request)
     {
         $validatedData = $request->validate([
-            'nik' => 'required|min:2|max:18|unique:App\Models\User',
+            'nik' => 'required|min:16|max:16|unique:App\Models\User',
             'nama' => 'required|max:255',
             'username' => 'required|min:4|max:255|unique:App\Models\User',
             'role' => 'required|min:4|max:9',
@@ -167,7 +166,7 @@ class AktorController extends Controller
         ];
 
         if($request->nik != $user->nik){
-            $rules['nik'] = 'required|min:2|max:18|unique:App\Models\User';
+            $rules['nik'] = 'required|min:16|max:16|unique:App\Models\User';
         }
         if($request->username != $user->username){
             $rules['username'] = 'required|min:4|max:255|unique:App\Models\User';
@@ -192,7 +191,7 @@ class AktorController extends Controller
         ];
 
         if($request->nik != $user->nik){
-            $rules['nik'] = 'required|min:2|max:18|unique:App\Models\User';
+            $rules['nik'] = 'required|min:16|max:16|unique:App\Models\User';
         }
         if($request->username != $user->username){
             $rules['username'] = 'required|min:4|max:255|unique:App\Models\User';
@@ -217,7 +216,7 @@ class AktorController extends Controller
         ];
 
         if($request->nik != $user->nik){
-            $rules['nik'] = 'required|min:2|max:18|unique:App\Models\User';
+            $rules['nik'] = 'required|min:16|max:16|unique:App\Models\User';
         }
         if($request->username != $user->username){
             $rules['username'] = 'required|min:4|max:255|unique:App\Models\User';
@@ -253,6 +252,9 @@ class AktorController extends Controller
 
     public function destroy_guru(User $user)
     {
+        $user->ujian()->delete(); // Hapus data ujian yang berelasi
+        $user->mapel()->delete(); // Hapus data modul yang berelasi
+        $user->grupsoal()->delete(); // Hapus data modul yang berelasi
         User::destroy($user->id);
         return back()->with('success', 'Data Berhasil Dihapus!');
     }

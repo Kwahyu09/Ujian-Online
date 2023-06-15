@@ -32,6 +32,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            $user->ujian()->delete(); // Hapus data ujian yang berelasi
+            $user->mapel()->delete(); // Hapus data modul yang berelasi
+            $user->grupsoal()->delete(); // Hapus data modul yang berelasi
+        });
+    }
     /**
      * The attributes that should be cast.
      *

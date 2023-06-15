@@ -26,7 +26,7 @@ class UjianController extends Controller
     {
         $ujian = Ujian::latest()->filter(request(['search']))->paginate(1000);
 
-        if(auth()->user()->role == "Ketua"){
+        if(auth()->user()->role == "Guru"){
             $ujian = Ujian::where('user_id', auth()->user()->id)->latest()->filter(request(['search']))->paginate(1000);
         }
         return view('ujian.index', [
@@ -94,8 +94,16 @@ class UjianController extends Controller
         $slug = $ujian->grup_soal;
         $grup = Grupsoal::where('slug', $slug)->get();
         $id_grup = $grup[0]['id'];
-        $soal = Soal::latest()->where('grupsoal_id',$id_grup)->paginate(1);
-        
+
+        if ($ujian->acak_soal === "Y"){
+            $soal = Soal::inRandomOrder()
+            ->where('grupsoal_id', $id_grup)
+            ->paginate(1);
+        }else{
+            $soal = Soal::where('grupsoal_id', $id_grup)
+            ->paginate(1);
+        }
+
         $nik = Auth::user()->nik;
         $simpan = SimpanUjian::where('ujian_id', $ujian->id)->where('nik_siswa',$nik)->get();
         return view('ujian_siswa.masuk_ujian',  [
@@ -120,12 +128,12 @@ class UjianController extends Controller
     {
         $ujian = Ujian::latest()->paginate(1000);
 
-        if(auth()->user()->role == "Ketua"){
+        if(auth()->user()->role == "Guru"){
             $ujian = Ujian::where('user_id', auth()->user()->id)->latest();
         }
         return view('ujianhasil', [
         "title" => "Ujian Hasil",
-        "post" => Ujian::latest()->filter(request(['search']))->paginate(8)
+        "post" => $ujian
         ]);
     }
 
@@ -163,6 +171,7 @@ class UjianController extends Controller
     {
         $validatedData = $request->validate([
             'kd_ujian' => 'required|min:5|max:150',
+            'user_id' => 'required',
             'nama_ujian' => 'required|min:5|max:150',
             'slug' => 'required|min:5|max:50|unique:App\Models\Ujian',
             'mapel' => 'required|max:255',
@@ -185,17 +194,7 @@ class UjianController extends Controller
      * @param  \App\Models\Ujian  $ujian
      * @return \Illuminate\Http\Response
      */
-    public function show(Ujian $ujian)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ujian  $ujian
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Ujian $ujian)
     {
         $mapel = Mapel::all();

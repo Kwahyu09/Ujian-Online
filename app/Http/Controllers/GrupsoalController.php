@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Grupsoal;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreGrupsoalRequest;
-use App\Http\Requests\UpdateGrupsoalRequest;
 use App\Models\Soal;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -125,9 +123,9 @@ class GrupsoalController extends Controller
         }
 
         $validatedData = $request->validate($rules);
-        Grupsoal::where('id', $grupsoal->id)
-            ->update($validatedData);
-        return redirect('/'.$grupsoal['slug'])->with('success', 'Data Berhasil DiUbah!');
+        $mapel = Mapel::find($request->mapel_id);
+        Grupsoal::where('id', $grupsoal->id)->update($validatedData);
+        return redirect('/'.$mapel->slug)->with('success', 'Data Berhasil DiUbah!');
     }
 
     /**
@@ -138,8 +136,9 @@ class GrupsoalController extends Controller
      */
     public function destroy(Grupsoal $grupsoal)
     {
+        $mapel = Mapel::find($grupsoal->mapel_id);
         Grupsoal::destroy($grupsoal->id);
-        return redirect('/mapel')->with('success', 'Data Berhasil Dihapus!');
+        return redirect('/'.$mapel->slug)->with('success', 'Data Berhasil Dihapus!');
     }
 
     public function checkSlug(Request $request)

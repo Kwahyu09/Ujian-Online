@@ -113,7 +113,7 @@
                                         <div class="col-md-2">
                                             <select class="form-control @error('bobot') is-invalid @enderror" id="bobot" name="bobot" value="{{ old('bobot') }}" required>
                                             <?php
-                                            for ($i = 1; $i <= 100; $i++){ ?>
+                                            for ($i = 1; $i <= 5; $i++){ ?>
                                                 @if(old('bobot')  == $i )
                                                     <option value="<?= $i ?>" selected><?= $i ?></option>
                                                 @else

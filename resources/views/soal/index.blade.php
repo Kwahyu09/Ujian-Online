@@ -13,9 +13,12 @@
                             <div class="col">
                                 <a href="/soal/create/{{ $grup }}" class="btn btn-primary">
                                     <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
+                                <a href="/soal/import/{{ $grup }}" class="btn btn-success">
+                                    Import Data <span class="fe fe-file-plus fe-12 mr-2"></span>
+                                </a>
                             </div>
                                 <form action="{{ url()->full() }}" class="form-inline mr-auto searchform">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 mr-3">
                                         <input
                                             type="text"
                                             class="form-control"

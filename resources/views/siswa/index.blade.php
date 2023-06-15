@@ -12,8 +12,11 @@
                         <br>
                         <div class="row align-items-center my-4">
                             <div class="col">
-                                <a href="/siswa/create/{{ $kelas }}" class="btn btn-primary">
+                                <a href="/siswa/create/{{ $kelas }}" class="btn btn-primary mr-2">
                                     <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>
+                                <a href="/siswa/import/{{ $kelas }}" class="btn btn-success">
+                                    Import Data <span class="fe fe-file-plus fe-12 mr-2"></span>
+                                </a>
                             </div>
                             <div class="col-auto">
                                 <form action="{{ url()->full() }}" class="form-inline mr-auto searchform">

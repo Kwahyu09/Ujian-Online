@@ -28,7 +28,10 @@
                                             class="form-control @error('nama') is-invalid @enderror"
                                             id="nama"
                                             required="required"
-                                            value="{{ old('nama', $post->nama) }}" autofocus>
+                                            value="{{ old('nama', $post->nama) }}" autofocus
+                                            @if(auth()->user()->role == "Siswa")
+                                            @endif
+                                            >
                                         @error('nama')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -52,7 +55,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputAddress2">Nip / Nik</label>
-                                        <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" id="nik" required value="{{ old('nik', $post->nik) }}">
+                                        <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" id="nik" required value="{{ old('nik', $post->nik) }}"
+                                        @if(auth()->user()->role == "Siswa")
+                                            readonly
+                                        @endif
+                                        >
                                         @error('nik')
                                         <div class="invalid-feedback">
                                                 {{ $message }}

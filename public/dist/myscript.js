@@ -1,7 +1,7 @@
 const flasData = $(".flash-data").data("flashdata");
 
 if (flasData) {
-    Swal.fire("error!", flasData, "success");
+    Swal.fire("Berhasil!", flasData, "success");
 }
 
 const flashDataerror = $(".flash-dataerror").data("flashdataerror");

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
 use App\Models\User;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Imports\UserImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class SiswaController extends Controller
 {
@@ -37,6 +39,38 @@ class SiswaController extends Controller
             "slug_kelas" => $kelas->slug
         ]);
     }
+    public function createImport(Kelas $kelas)
+    {
+        return view('siswa.import',[
+            "title" => "Siswa",
+            "role" => "Siswa",
+            "kelas_id" => $kelas->id,
+            "slug_kelas" => $kelas->slug
+        ]);
+    }
+
+    public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_siswa',$nama_file);
+ 
+		// import data
+		Excel::import(new UserImport, public_path('/file_siswa/'.$nama_file));
+ 
+		// alihkan halaman kembali
+		return back()->with('success', 'Data Berhasil Diimport!');
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -59,17 +93,6 @@ class SiswaController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
         return redirect('/kelas'.'/'.$request->slug_kelas)->with('success', 'Data Berhasil Ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Siswa $siswa)
-    {
-        //
     }
 
     /**
@@ -103,7 +126,7 @@ class SiswaController extends Controller
         ];
 
         if($request->nik != $user->nik){
-            $rules['nik'] = 'required|min:2|max:18|unique:App\Models\User';
+            $rules['nik'] = 'required|min:16|max:16|unique:App\Models\User';
         }
         if($request->username != $user->username){
             $rules['username'] = 'required|min:4|max:255|unique:App\Models\User';

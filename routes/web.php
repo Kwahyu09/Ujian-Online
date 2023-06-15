@@ -67,7 +67,9 @@ Route::put('/Guru/{user:username}', [AktorController::class,'update_admin'])->mi
 Route::get('/kelassiswa', [KelasController::class, 'kelas_siswa'])->middleware(['auth','role:Admin|Staf'])->name('kelas_siswa');
 Route::put('/Siswa/{user:username}', [AktorController::class,'update_admin'])->middleware(['auth','role:Siswa'])->name('update_profilesiswa');
 Route::get('/siswa/create/{kelas:slug}',[SiswaController::class, 'create'])->middleware(['auth','role:Admin|Staf'])->name('createsiswa');
+Route::get('/siswa/import/{kelas:slug}',[SiswaController::class, 'createImport'])->middleware(['auth','role:Admin|Staf'])->name('createsiswa');
 Route::post('/siswa/store', [SiswaController::class,'store'])->middleware(['auth','role:Admin|Staf'])->name('storesiswa');
+Route::post('/siswa/import_excel', [SiswaController::class,'import_excel'])->middleware(['auth','role:Admin|Staf'])->name('storesiswa');
 Route::get('/siswa/{user:username}/edit',[SiswaController::class, 'edit'])->middleware(['auth','role:Admin|Staf'])->name('siswaedit');
 Route::put('/siswa/{user:username}/update', [SiswaController::class,'update'])->middleware(['auth','role:Admin|Staf'])->name('siswaupdate');
 Route::get('/siswa/{user:username}/delete',[SiswaController::class, 'destroy'])->middleware(['auth','role:Admin|Staf'])->name('delete_siswa');
@@ -101,7 +103,9 @@ Route::get('/grupsoal/{mapel:slug}/checkSlug', [GrupsoalController::class, 'chec
 
 Route::get('/grupsoal/{grupsoal:slug}', [GrupsoalController::class, 'show'])->middleware(['auth','role:Admin|Guru'])->name('index_soal');
 Route::get('/soal/create/{grupsoal:slug}',[SoalController::class, 'create'])->middleware(['auth','role:Admin|Guru'])->name('createsoal');
-Route::post('/soal/store', [SoalController::class,'store'])->middleware(['auth','role:Admin|Guru'])->name('storesoal');
+Route::get('/soal/import/{grupsoal:slug}',[SoalController::class, 'createImport'])->middleware(['auth','role:Admin|Guru'])->name('createsoal');
+Route::post('/soal/import_excel', [SoalController::class,'store'])->middleware(['auth','role:Admin|Guru'])->name('storesoal');
+Route::post('/soal/store', [SoalController::class,'import_excel'])->middleware(['auth','role:Admin|Guru'])->name('storesoal');
 Route::get('/soal/{soal:slug}/edit',[SoalController::class, 'edit'])->middleware(['auth','role:Admin|Guru'])->name('editsoal');
 Route::put('/soal/{soal:slug}/update',[SoalController::class, 'update'])->middleware(['auth','role:Admin|Guru'])->name('updatesoal');
 Route::get('/soal/{soal:slug}/delete', [SoalController::class,'destroy'])->middleware(['auth','role:Admin|Guru'])->name('soal_delete');
