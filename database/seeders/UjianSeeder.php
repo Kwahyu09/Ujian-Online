@@ -22,8 +22,6 @@ class UjianSeeder extends Seeder
             'mapel' => 'Fisika',
             'grup_Soal' => 'Ujian Tengah Semester',
             'kelas' => 'X-2023-NKPI',
-            'acak_soal' => 'Y',
-            'acak_jawaban' => 'Y',
             'tanggal' => '2023-11-04',
             'waktu_mulai' => '2023-04-11 10:14:31',
             'waktu_selesai' => '2023-04-11 14:14:31',

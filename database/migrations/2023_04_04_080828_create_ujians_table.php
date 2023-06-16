@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('mapel');
             $table->string('grup_soal');
             $table->string('kelas');
-            $table->string('acak_soal')->nullable();
-            $table->string('acak_jawaban')->nullable();
             $table->date('tanggal');
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');

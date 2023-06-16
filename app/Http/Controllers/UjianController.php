@@ -94,15 +94,7 @@ class UjianController extends Controller
         $slug = $ujian->grup_soal;
         $grup = Grupsoal::where('slug', $slug)->get();
         $id_grup = $grup[0]['id'];
-
-        if ($ujian->acak_soal === "Y"){
-            $soal = Soal::inRandomOrder()
-            ->where('grupsoal_id', $id_grup)
-            ->paginate(1);
-        }else{
-            $soal = Soal::where('grupsoal_id', $id_grup)
-            ->paginate(1);
-        }
+        $soal = Soal::where('grupsoal_id', $id_grup)->paginate(1);
 
         $nik = Auth::user()->nik;
         $simpan = SimpanUjian::where('ujian_id', $ujian->id)->where('nik_siswa',$nik)->get();
@@ -177,8 +169,6 @@ class UjianController extends Controller
             'mapel' => 'required|max:255',
             'grup_soal' => 'required|max:255',
             'kelas' => 'required|max:255',
-            'acak_soal' => 'required',
-            'acak_jawaban' => 'required',
             'tanggal' => 'required',
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required'
@@ -229,8 +219,6 @@ class UjianController extends Controller
             'mapel' => 'required|max:255',
             'grup_soal' => 'required|max:255',
             'kelas' => 'required|max:255',
-            'acak_soal' => 'required',
-            'acak_jawaban' => 'required',
             'tanggal' => 'required',
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required'
