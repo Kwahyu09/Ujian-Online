@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('hasilujians', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ujian_id');
-            $table->string('nama_siswa');
-            $table->string('nik_siswa');
-            $table->string('nilai');
+            $table->string('nama_siswa', 50);
+            $table->string('nik_siswa', 16);
+            $table->string('nilai', 3);
             $table->timestamps();
         });
     }

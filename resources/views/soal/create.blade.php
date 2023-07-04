@@ -17,8 +17,6 @@
                                     @csrf
                                     <div class="row mb-4">
                                         <div class="col-md-2">
-                                            <input type="hidden" name="kd_soal" id="kd_soal" value="{{ $kd_soal }}">
-                                            <input type="hidden" name="slug" id="slug" value="{{ $kd_soal }}">
                                             <input type="hidden" name="grupsoal_slug" id="grupsoal_slug" value="{{ $grupsoal_slug }}">
                                             <input type="hidden" name="grupsoal_id" id="grupsoal_id" value="{{ $grupsoal_id }}">
                                             <h5 class="card-title">Pertanyaan</h5>

@@ -9,7 +9,7 @@
                                 <h3>Menu Ujian Siswa SMK N 4 Kota Bengkulu</h3>
                             </div>
                             <div class="card-body">
-                            <div class="flash-data" data-flashdata="{{ session('success') }}">
+                            <div class="flash-dataerror" data-flashdataerror="{{ session('success') }}">
                             </div>
                             <form action="{{ route('ujian-data') }}" method="POST">
                                 @csrf

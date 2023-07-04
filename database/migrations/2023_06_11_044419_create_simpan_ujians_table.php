@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('soal_id');
             $table->foreignId('ujian_id');
-            $table->string('nik_siswa');
-            $table->string('nama_siswa');
-            $table->string('jawaban');
-            $table->string('skor');
+            $table->string('nik_siswa', 16);
+            $table->string('nama_siswa', 50);
+            $table->string('jawaban', 100);
+            $table->string('skor', 3);
             $table->timestamps();
         });
     }

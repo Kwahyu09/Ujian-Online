@@ -94,13 +94,38 @@ class UjianController extends Controller
         $slug = $ujian->grup_soal;
         $grup = Grupsoal::where('slug', $slug)->get();
         $id_grup = $grup[0]['id'];
-        $soal = Soal::where('grupsoal_id', $id_grup)->paginate(1);
+        
+        // Memeriksa apakah soal sudah diacak sebelumnya
+        $soalTeracak = session()->get('soal_teracak');
+
+        if (!$soalTeracak) {
+            // Mengambil soal berdasarkan ID grup dan mengacak urutannya
+            $soal = Soal::where('grupsoal_id', $id_grup)->orderBy('bobot', 'desc')->get()->shuffle();
+
+            // Menyimpan soal yang diacak dalam session
+            session()->put('soal_teracak', $soal);
+        } else {
+            $soal = $soalTeracak;
+        }
+
+        $totalBobot = 0;
+        $soalTampil = [];
+
+        foreach ($soal as $item) {
+            $totalBobot += $item->bobot;
+
+            if ($totalBobot <= 100) {
+                $soalTampil[] = $item;
+            } else {
+                break;
+            }
+        }
 
         $nik = Auth::user()->nik;
         $simpan = SimpanUjian::where('ujian_id', $ujian->id)->where('nik_siswa',$nik)->get();
         return view('ujian_siswa.masuk_ujian',  [
             "title" => "Ujian Mahasiswa",
-            "soal" => $soal,
+            "soal" => $soalTampil,
             "ujian" => $ujian,
             "jam" => $jam,
             "tanggal" => $tanggal,
@@ -144,9 +169,14 @@ class UjianController extends Controller
             $mapel = Mapel::where('user_id', auth()->user()->id)->latest()->filter(request(['search']))->paginate(1000);
             $grupsoal = Grupsoal::where('user_id', auth()->user()->id)->latest()->filter(request(['search']))->paginate(1000);
         }
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $kode_unik = '';
+        for ($i = 0; $i < 5; $i++) {
+            $kode_unik .= $characters[random_int(0, strlen($characters) - 1)];
+        }
         return view('ujian.create',[
             "title" => "Ujian",
-            "kd_ujian" => uniqid(),
+            "kd_ujian" => $kode_unik,
             "mapel" => $mapel,
             "grup_soal" => $grupsoal,
             "kelas" => $kelas

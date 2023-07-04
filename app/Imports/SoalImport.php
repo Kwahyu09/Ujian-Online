@@ -15,16 +15,14 @@ class SoalImport implements ToModel
     public function model(array $row)
     {
         return new Soal([
-            'kd_soal' => $row[0], 
-            'slug' => $row[0], 
-            'grupsoal_id' => $row[1],
-            'pertanyaan' => $row[2],
-            'opsi_a' => $row[3], 
-            'opsi_b' => $row[4], 
-            'opsi_c' => $row[5], 
-            'opsi_d' => $row[6], 
-            'jawaban' => $row[7], 
-            'bobot' => $row[8], 
+            'grupsoal_id' => $row[0],
+            'pertanyaan' => $row[1],
+            'opsi_a' => $row[2], 
+            'opsi_b' => $row[3], 
+            'opsi_c' => $row[4], 
+            'opsi_d' => $row[5], 
+            'jawaban' => $row[6], 
+            'bobot' => $row[7], 
         ]);
     }
 }

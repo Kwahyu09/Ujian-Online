@@ -45,6 +45,13 @@
         width: 100%;
         height: 300px;
       }
+      .card-fixed {
+        position: fixed;
+        top: 30%;
+        right: 10px;
+        transform: translateY(-50%);
+        z-index: 999;
+      }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>

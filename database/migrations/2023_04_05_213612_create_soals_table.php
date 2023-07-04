@@ -15,16 +15,13 @@ return new class extends Migration
     {
         Schema::create('soals', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_soal');
             $table->text('pertanyaan');
             $table->foreignId('grupsoal_id');
-            $table->string('slug');
-            $table->string('gambar')->nullable();
-            $table->string('opsi_a');
-            $table->string('opsi_b');
-            $table->string('opsi_c');
-            $table->string('opsi_d');
-            $table->string('jawaban');
+            $table->string('opsi_a', 100);
+            $table->string('opsi_b', 100);
+            $table->string('opsi_c', 100);
+            $table->string('opsi_d', 100);
+            $table->string('jawaban', 100);
             $table->integer('bobot');
             $table->timestamps();
         });

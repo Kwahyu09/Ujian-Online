@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'nik' => '197909192003121075',
+            'nik' => '1979091920031210',
             'nama' => 'AHMAT FAHROZI, S.Pd',
             'username' => 'ahmatfahrozi23',
             'role' => 'Guru',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
         User::create([
-            'nik' => '197909192003121987',
+            'nik' => '7909192003121987',
             'nama' => 'Krisna Wahyudi S.Kom',
             'username' => 'kwahyu09',
             'role' => 'Guru',

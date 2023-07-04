@@ -20,9 +20,14 @@ class SoalController extends Controller
      */
     public function create(Grupsoal $grupsoal)
     {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $kode_unik = '';
+        for ($i = 0; $i < 5; $i++) {
+            $kode_unik .= $characters[random_int(0, strlen($characters) - 1)];
+        }
         return view('soal.create',[
             "title" => "Soal",
-            "kd_soal" => uniqid(),
+            "kd_soal" => $kode_unik,
             "grupsoal_id" => $grupsoal->id,
             "grupsoal_nama" => $grupsoal->nama_grup,
             "mapel" => Mapel::find($grupsoal->modul_id,['nama_mapel']),
@@ -73,10 +78,8 @@ class SoalController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'kd_soal' => 'required|min:5|max:50',
             'pertanyaan' => 'required|min:2|max:255',
             'grupsoal_id' => 'required',
-            'slug' => 'required|min:5|max:50|unique:App\Models\Soal',
             'opsi_a' => 'required',
             'opsi_b' => 'required',
             'opsi_c' => 'required',
@@ -121,7 +124,6 @@ class SoalController extends Controller
     public function update(Request $request, Soal $soal)
     {
         $rules = [
-            'kd_soal' => 'required|min:5|max:50',
             'pertanyaan' => 'required|min:2|max:255',
             'grupsoal_id' => 'required',
             'opsi_a' => 'required',
@@ -131,10 +133,6 @@ class SoalController extends Controller
             'bobot' => 'required'
         ];
         
-
-        if($request->slug != $soal->slug){
-            $validatedData['slug'] = 'required|min:5|max:50|unique:App\Models\Soal';
-        }
         $validatedData = $request->validate($rules);
         if($request['jawaban'] == "opsi_a"){
             $validatedData['jawaban'] = $request['opsi_a'];

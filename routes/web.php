@@ -104,11 +104,11 @@ Route::get('/grupsoal/{mapel:slug}/checkSlug', [GrupsoalController::class, 'chec
 Route::get('/grupsoal/{grupsoal:slug}', [GrupsoalController::class, 'show'])->middleware(['auth','role:Admin|Guru'])->name('index_soal');
 Route::get('/soal/create/{grupsoal:slug}',[SoalController::class, 'create'])->middleware(['auth','role:Admin|Guru'])->name('createsoal');
 Route::get('/soal/import/{grupsoal:slug}',[SoalController::class, 'createImport'])->middleware(['auth','role:Admin|Guru'])->name('createsoal');
-Route::post('/soal/import_excel', [SoalController::class,'store'])->middleware(['auth','role:Admin|Guru'])->name('storesoal');
-Route::post('/soal/store', [SoalController::class,'import_excel'])->middleware(['auth','role:Admin|Guru'])->name('storesoal');
-Route::get('/soal/{soal:slug}/edit',[SoalController::class, 'edit'])->middleware(['auth','role:Admin|Guru'])->name('editsoal');
-Route::put('/soal/{soal:slug}/update',[SoalController::class, 'update'])->middleware(['auth','role:Admin|Guru'])->name('updatesoal');
-Route::get('/soal/{soal:slug}/delete', [SoalController::class,'destroy'])->middleware(['auth','role:Admin|Guru'])->name('soal_delete');
+Route::post('/soal/import_excel', [SoalController::class,'import_excel'])->middleware(['auth','role:Admin|Guru'])->name('storesoalimport');
+Route::post('/soal/store', [SoalController::class,'store'])->middleware(['auth','role:Admin|Guru'])->name('storesoal');
+Route::get('/soal/{soal:id}/edit',[SoalController::class, 'edit'])->middleware(['auth','role:Admin|Guru'])->name('editsoal');
+Route::put('/soal/{soal:id}/update',[SoalController::class, 'update'])->middleware(['auth','role:Admin|Guru'])->name('updatesoal');
+Route::get('/soal/{soal:id}/delete', [SoalController::class,'destroy'])->middleware(['auth','role:Admin|Guru'])->name('soal_delete');
 
 Route::post('/hasilujian/hasil_ujian', [HasilujianController::class, 'hasil'])->middleware(['auth','role:Admin|Guru'])->name('hasilujian.hasil_ujian');
 Route::get('/lapnilai', [HasilujianController::class,'index'])->middleware(['auth','role:Admin|Guru'])->name('lapniilai');

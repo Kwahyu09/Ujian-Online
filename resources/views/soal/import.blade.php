@@ -34,7 +34,6 @@
                                                 <table class="table table-hover table-borderless border-v">
                                                     <thead class="thead-dark">
                                                         <tr>
-                                                            <th>Kode Soal</th>
                                                             <th>Grup_Soal_Id</th>
                                                             <th>Pertanyaan</th>
                                                             <th>Opsi A</th>
@@ -47,7 +46,6 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>i5jn27d</td>
                                                             <td>{{ $grupsoal_id }}</td>
                                                             <td>Etika berasal dari Bahasa Yunani, yaitu</td>
                                                             <td>Ethus</td>

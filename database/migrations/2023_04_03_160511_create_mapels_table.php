@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('mapels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('nama_mapel');
+            $table->string('nama_mapel', 30);
             $table->string('slug');
             $table->timestamps();
         });

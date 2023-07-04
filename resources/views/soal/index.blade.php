@@ -41,9 +41,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode Soal</th>
                                     <th>Pertanyaan</th>
-                                    <th>Gambar</th>
                                     <th>Opsi A</th>
                                     <th>Opsi B</th>
                                     <th>Opsi C</th>
@@ -62,9 +60,7 @@
                                     data-parent="#c-2474"
                                     href="#collap-2474">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $pos->kd_soal }}</td>
                                     <td>{!! $pos->pertanyaan !!}</td>
-                                    <td>{{ $pos->gambar }}</td>
                                     <td>{!! $pos->opsi_a !!}</td>
                                     <td>{!!$pos->opsi_b !!}</td>
                                     <td>{!! $pos->opsi_c !!}</td>
@@ -72,10 +68,10 @@
                                     <td>{!! $pos->jawaban !!}</td>
                                     <td>{{ $pos->bobot }}</td>
                                     <td style="width:90px">
-                                        <a href="/soal/{{ $pos->slug }}/edit" class="badge bg-warning badge-light">
+                                        <a href="/soal/{{ $pos->id }}/edit" class="badge bg-warning badge-light">
                                             <i class="fe fe-16 fe-edit"></i>
                                         </a>
-                                        <a href="/soal/{{ $pos->slug }}/delete" class="badge bg-danger badge-light tombol-hapus">
+                                        <a href="/soal/{{ $pos->id }}/delete" class="badge bg-danger badge-light tombol-hapus">
                                             <i class="fe fe-16 fe-trash-2"></i>
                                         </a>
                                     </td>

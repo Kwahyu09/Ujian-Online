@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('ujians', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('kd_ujian');
-            $table->string('nama_ujian');
+            $table->string('kd_ujian', 5);
+            $table->string('nama_ujian', 50);
             $table->string('slug');
-            $table->string('mapel');
-            $table->string('grup_soal');
-            $table->string('kelas');
+            $table->string('mapel', 30);
+            $table->string('grup_soal',50);
+            $table->string('kelas', 50);
             $table->date('tanggal');
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');

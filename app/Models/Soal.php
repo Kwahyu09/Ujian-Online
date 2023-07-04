@@ -15,8 +15,7 @@ class Soal extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ??  false, function($query, $search){
-            return $query->where('kode_soal', 'like', '%' . $search . '%')
-                  ->orWhere('pertanyaan', 'like', '%' . $search . '%')
+            return $query->where('pertanyaan', 'like', '%' . $search . '%')
                   ->orWhere('opsi_a', 'like', '%' . $search . '%')
                   ->orWhere('opsi_b', 'like', '%' . $search . '%')
                   ->orWhere('opsi_c', 'like', '%' . $search . '%')

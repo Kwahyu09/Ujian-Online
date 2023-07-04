@@ -13,13 +13,11 @@
                                     {{ $title }}</strong>
                             </div>
                             <div class="card-body">
-                                <form action="/soal/{{ $post->slug }}/update" method="post">
+                                <form action="/soal/{{ $post->id }}/update" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="row mb-4">
                                         <div class="col-md-2">
-                                            <input type="hidden" name="kd_soal" id="kd_soal" value="{{ $post->kd_soal }}">
-                                            <input type="hidden" name="slug" id="slug" value="{{ $post->slug }}">
                                             <input type="hidden" name="grupsoal_id" id="grupsoal_id" value="{{ $post->grupsoal_id }}">
                                             <h5 class="card-title">Pertanyaan</h5>
                                         </div>
