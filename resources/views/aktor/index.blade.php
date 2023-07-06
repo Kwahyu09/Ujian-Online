@@ -8,7 +8,7 @@
                         <h2 class="h3 mb-0 page-title">Data
                             {{ $title }}</h2>
                         <br>
-                        <div class="row align-items-center my-4">
+                        <div class="row align-items-center mb-3">
                             <div class="col">
                                 <a href="/{{ $title }}/create" type="button" class="btn btn-primary">
                                     <span class="fe fe-plus-circle fe-12 mr-2"></span>Tambah</a>

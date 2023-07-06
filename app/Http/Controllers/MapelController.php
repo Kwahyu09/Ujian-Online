@@ -18,7 +18,7 @@ class MapelController extends Controller
     {
         return view('mapel.index',[
         "title" => "Mata Pelajaran",
-        "post" => Mapel::latest()->filter(request(['search']))->paginate(8)
+        "post" => Mapel::with('user')->latest()->filter(request(['search']))->paginate(8)
         ]);
     }
 

@@ -33,7 +33,9 @@
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @if (Auth::user()->role == 'Siswa')
     <script src="/js/jam.js"></script>
+    @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
       #chartContainer {
@@ -76,7 +78,11 @@
         }
     </style>
   </head>
+  @if (Auth::user()->role == 'Siswa')
   <body class="vertical light" onload="realtimeClock()">
+  @else
+  <body class="vertical light">
+  @endif
     <div class="wrapper">
       <nav class="topnav navbar navbar-light">
         <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
